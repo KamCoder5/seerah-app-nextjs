@@ -54,11 +54,7 @@ interface TypographyProps {
 	children: React.ReactNode;
 }
 
-const Typography: FC<TypographyProps> = ({
-	variant = "body1",
-	className = "",
-	children,
-}) => {
+const Typography: FC<TypographyProps> = ({ variant = "body1", className = "", children }) => {
 	const Element = variantToElement[variant] || "p";
 	const classes = cn(variantClasses[variant], className);
 	return <Element className={classes}>{children}</Element>;

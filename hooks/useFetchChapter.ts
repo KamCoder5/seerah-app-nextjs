@@ -46,10 +46,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 					const jsonData: QuizData = JSON.parse(jsonString);
 					allQuizData.push(jsonData);
 				} catch (error) {
-					console.error(
-						"Error parsing JSON from quiz block data attribute:",
-						error
-					);
+					console.error("Error parsing JSON from quiz block data attribute:", error);
 				}
 			}
 		});
@@ -60,9 +57,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 	}
 };
 
-const useFetchChapter = (
-	slug: string
-): UseQueryResult<FetchContentResult, Error> => {
+const useFetchChapter = (slug: string): UseQueryResult<FetchContentResult, Error> => {
 	return useQuery({
 		queryKey: ["content", slug],
 		queryFn: () => fetchContent(slug),

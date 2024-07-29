@@ -1,45 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { FaCode } from "react-icons/fa";
 import useFetchChapter from "@/hooks/useFetchChapter";
 import useQuiz from "@/hooks/useQuiz";
 import useChapterStore from "@/store/useChapterStore";
 import useFetchAllChapters from "@/hooks/useFetchAllChapters";
-import router from "next/navigation";
 
 export default function ChaptersPage() {
-	const params = useParams<{ slug: string }>();
-	const { slug } = params;
+	const router = useRouter();
+	const { slug } = useParams() as { slug: string }; // Ensure that slug is a string
 
 	const [pageIndex, setPageIndex] = useState(0);
 	const { data, isLoading, error } = useFetchChapter(slug || "");
 	const { unlockNextChapter } = useChapterStore();
 	const { data: allChaptersData } = useFetchAllChapters();
 
-	const {
-		currentQuestion,
-		showScore,
-		score,
-		isQuizPassedPerfectly,
-		resetQuizState,
-		handleAnswerOptionClick,
-	} = useQuiz(data?.allQuizData ?? []);
+	const { currentQuestion, showScore, score, isQuizPassedPerfectly, resetQuizState, handleAnswerOptionClick } = useQuiz(
+		data?.allQuizData ?? []
+	);
 
 	const nextPage = () => {
-		if (
-			data &&
-			data.contentSections &&
-			pageIndex < data.contentSections.length - 1
-		) {
+		if (data && data.contentSections && pageIndex < data.contentSections.length - 1) {
 			setPageIndex(pageIndex + 1);
 			resetQuizState();
 		} else if (data && pageIndex === data.contentSections.length - 1) {
-			const allChapterSlugs =
-				allChaptersData &&
-				allChaptersData.map((chapter) => chapter.slug);
-			unlockNextChapter(slug, allChapterSlugs);
+			const allChapterSlugs = allChaptersData?.map((chapter) => chapter.slug);
+			unlockNextChapter(slug, allChapterSlugs || []);
 			router.push("/");
 		}
 	};
@@ -51,10 +39,7 @@ export default function ChaptersPage() {
 		}
 	};
 
-	const isCurrentPageQuiz =
-		data?.contentSections?.length > 0 &&
-		data?.allQuizData &&
-		data.allQuizData[pageIndex]?.length > 0;
+	const isCurrentPageQuiz = data?.contentSections?.length > 0 && data?.allQuizData?.[pageIndex]?.length > 0;
 
 	if (isLoading) return <div>Loading...</div>;
 	if (error) return <p>Error fetching content: {error.message}</p>;
@@ -82,13 +67,9 @@ export default function ChaptersPage() {
 								{showScore ? (
 									<div className="mt-4">
 										<p className="font-bold">
-											You scored {score} out of{" "}
-											{data.allQuizData[pageIndex]
-												?.length ?? 0}
+											You scored {score} out of {data.allQuizData[pageIndex]?.length ?? 0}
 										</p>
-										{score <
-											(data.allQuizData[pageIndex]
-												?.length ?? 0) && (
+										{score < (data.allQuizData[pageIndex]?.length ?? 0) && (
 											<button
 												className="btn btn-primary"
 												onClick={resetQuizState}
@@ -101,41 +82,20 @@ export default function ChaptersPage() {
 									<>
 										<div className="mt-4">
 											<p className="font-bold">
-												Question {currentQuestion + 1} /{" "}
-												{data.allQuizData[pageIndex]
-													?.length ?? 0}
+												Question {currentQuestion + 1} / {data.allQuizData[pageIndex]?.length ?? 0}
 											</p>
-											<p>
-												{
-													data.allQuizData[
-														pageIndex
-													]?.[currentQuestion]
-														?.questionText
-												}
-											</p>
+											<p>{data.allQuizData[pageIndex]?.[currentQuestion]?.questionText}</p>
 										</div>
 										<div className="mt-4">
-											{data.allQuizData[pageIndex]?.[
-												currentQuestion
-											]?.answerOptions.map(
-												(answerOption, index) => (
-													<button
-														key={index}
-														className="btn btn-outline mt-2"
-														onClick={() =>
-															handleAnswerOptionClick(
-																answerOption.isCorrect,
-																data.allQuizData,
-																pageIndex
-															)
-														}
-													>
-														{
-															answerOption.answerText
-														}
-													</button>
-												)
-											)}
+											{data.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions.map((answerOption, index) => (
+												<button
+													key={index}
+													className="btn btn-outline mt-2"
+													onClick={() => handleAnswerOptionClick(answerOption.isCorrect, data.allQuizData, pageIndex)}
+												>
+													{answerOption.answerText}
+												</button>
+											))}
 										</div>
 									</>
 								)}
@@ -154,9 +114,7 @@ export default function ChaptersPage() {
 							<button
 								className="btn btn-primary"
 								onClick={nextPage}
-								disabled={
-									isCurrentPageQuiz && !isQuizPassedPerfectly
-								}
+								disabled={isCurrentPageQuiz && !isQuizPassedPerfectly}
 							>
 								Next
 							</button>

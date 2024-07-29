@@ -20,10 +20,7 @@ export default function ChaptersRoot() {
 		.map((chapter) => parseInt(chapter.split("-")[1]))
 		.reduce((max, num) => (num > max ? num : max), 0);
 
-	const currentChapter = data?.find(
-		(chapter) =>
-			parseInt(chapter.slug.split("-")[1]) === currentChapterIndex
-	);
+	const currentChapter = data?.find((chapter) => parseInt(chapter.slug.split("-")[1]) === currentChapterIndex);
 
 	const PAGE_HEADING = "Chapters";
 	const PAGE_DESCRIPTION = "Read each chapter, pass the quiz and progress!";
@@ -62,13 +59,9 @@ export default function ChaptersRoot() {
 									title={chapter.subtitle}
 									slug={chapter.slug}
 									onClick={() => {
-										router.push(
-											`/chapters/${chapter.slug}`
-										);
+										router.push(`/chapters/${chapter.slug}`);
 									}}
-									disabled={
-										!unlockedChapters.includes(chapter.slug)
-									}
+									disabled={!unlockedChapters.includes(chapter.slug)}
 								/>
 							</div>
 						))}
@@ -76,11 +69,7 @@ export default function ChaptersRoot() {
 				<ContinueReadingButton
 					slug={currentChapter ? currentChapter.slug : "loading"}
 					title={currentChapter ? currentChapter.subtitle : "loading"}
-					onClick={() =>
-						router.push(
-							`/chapters/${currentChapter ? currentChapter.slug : "loading"}`
-						)
-					}
+					onClick={() => router.push(`/chapters/${currentChapter ? currentChapter.slug : "loading"}`)}
 				/>
 			</div>
 		</main>

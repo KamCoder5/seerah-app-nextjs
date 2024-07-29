@@ -17,8 +17,7 @@ const ContinueReadingButton: React.FC<StyledButtonProps> = ({
 	disabled = false,
 }) => {
 	const chapterNumber = slug.split("chapter-")[1];
-	const CHAPTER_NUMBER_TITLE =
-		`Chapter ${chapterNumber} - ${title}`.toUpperCase();
+	const CHAPTER_NUMBER_TITLE = `Chapter ${chapterNumber} - ${title}`.toUpperCase();
 
 	return (
 		<button
@@ -29,9 +28,7 @@ const ContinueReadingButton: React.FC<StyledButtonProps> = ({
 			onClick={disabled ? undefined : onClick}
 			disabled={disabled}
 		>
-			<span className="text-white text-lg font-medium">
-				{CHAPTER_NUMBER_TITLE}
-			</span>
+			<span className="text-white text-lg font-medium">{CHAPTER_NUMBER_TITLE}</span>
 		</button>
 	);
 };
