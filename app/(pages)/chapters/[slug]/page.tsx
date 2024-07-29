@@ -32,7 +32,7 @@ export default function ChaptersPage() {
 		} else if (data && pageIndex === data.contentSections.length - 1) {
 			const allChapterSlugs = allChaptersData?.map((chapter) => chapter.slug);
 			unlockNextChapter(slug, allChapterSlugs || []);
-			router.push("/");
+			router.push("/chapters");
 		}
 	};
 
