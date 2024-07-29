@@ -45,7 +45,7 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({ title, onClick, chap
 	return (
 		<button
 			className={cn(
-				"flex items-center rounded-lg h-20 bg-white shadow-md gap-2",
+				"flex items-center rounded-lg h-20 bg-white shadow-md gap-2 w-full pr-2",
 				disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
 			)}
 			onClick={disabled ? undefined : onClick}

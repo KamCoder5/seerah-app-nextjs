@@ -8,6 +8,8 @@ import useQuiz from "@/hooks/useQuiz";
 import useChapterStore from "@/store/useChapterStore";
 import useFetchAllChapters from "@/hooks/useFetchAllChapters";
 import { LoadingSpinner } from "@/components/spinner/Spinner";
+import { motion } from "framer-motion";
+import { pageVariants, pageTransition } from "@/lib/animation";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -47,85 +49,93 @@ export default function ChaptersPage() {
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	return (
-		<div className="container mx-auto p-4">
-			<div className="header flex items-center justify-center bg-gray-200 p-6">
-				<FaCode size={100} />
-			</div>
-			<div className="content mt-6">
-				<h1 className="text-2xl font-bold">Chapters</h1>
-				<p>
-					Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
-				</p>
-				{(data?.contentSections?.length ?? 0) > 0 ? (
-					<>
-						<div
-							dangerouslySetInnerHTML={{
-								__html: data.contentSections[pageIndex],
-							}}
-						/>
+		<motion.div
+			initial="initial"
+			animate="in"
+			exit="out"
+			variants={pageVariants}
+			transition={pageTransition}
+		>
+			<div className="container mx-auto p-4">
+				<div className="header flex items-center justify-center bg-gray-200 p-6">
+					<FaCode size={100} />
+				</div>
+				<div className="content mt-6">
+					<h1 className="text-2xl font-bold">Chapters</h1>
+					<p>
+						Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
+					</p>
+					{(data?.contentSections?.length ?? 0) > 0 ? (
+						<>
+							<div
+								dangerouslySetInnerHTML={{
+									__html: data.contentSections[pageIndex],
+								}}
+							/>
 
-						{isCurrentPageQuiz && (
-							<>
-								{showScore ? (
-									<div className="mt-4">
-										<p className="font-bold">
-											You scored {score} out of {data.allQuizData[pageIndex]?.length ?? 0}
-										</p>
-										{score < (data.allQuizData[pageIndex]?.length ?? 0) && (
-											<button
-												className="btn btn-primary"
-												onClick={resetQuizState}
-											>
-												Retake Quiz
-											</button>
-										)}
-									</div>
-								) : (
-									<>
+							{isCurrentPageQuiz && (
+								<>
+									{showScore ? (
 										<div className="mt-4">
 											<p className="font-bold">
-												Question {currentQuestion + 1} / {data.allQuizData[pageIndex]?.length ?? 0}
+												You scored {score} out of {data.allQuizData[pageIndex]?.length ?? 0}
 											</p>
-											<p>{data.allQuizData[pageIndex]?.[currentQuestion]?.questionText}</p>
-										</div>
-										<div className="mt-4">
-											{data.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions.map((answerOption, index) => (
+											{score < (data.allQuizData[pageIndex]?.length ?? 0) && (
 												<button
-													key={index}
-													className="btn btn-outline mt-2"
-													onClick={() => handleAnswerOptionClick(answerOption.isCorrect, data.allQuizData, pageIndex)}
+													className="btn btn-primary"
+													onClick={resetQuizState}
 												>
-													{answerOption.answerText}
+													Retake Quiz
 												</button>
-											))}
+											)}
 										</div>
-									</>
-								)}
-							</>
-						)}
-
-						<div className="flex justify-between mt-6">
-							{pageIndex > 0 && (
-								<button
-									className="btn btn-secondary"
-									onClick={prevPage}
-								>
-									Previous
-								</button>
+									) : (
+										<>
+											<div className="mt-4">
+												<p className="font-bold">
+													Question {currentQuestion + 1} / {data.allQuizData[pageIndex]?.length ?? 0}
+												</p>
+												<p>{data.allQuizData[pageIndex]?.[currentQuestion]?.questionText}</p>
+											</div>
+											<div className="mt-4">
+												{data.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions.map((answerOption, index) => (
+													<button
+														key={index}
+														className="btn btn-outline mt-2"
+														onClick={() => handleAnswerOptionClick(answerOption.isCorrect, data.allQuizData, pageIndex)}
+													>
+														{answerOption.answerText}
+													</button>
+												))}
+											</div>
+										</>
+									)}
+								</>
 							)}
-							<button
-								className="btn btn-primary"
-								onClick={nextPage}
-								disabled={isCurrentPageQuiz && !isQuizPassedPerfectly}
-							>
-								Next
-							</button>
-						</div>
-					</>
-				) : (
-					<LoadingSpinner />
-				)}
+
+							<div className="flex justify-between mt-6">
+								{pageIndex > 0 && (
+									<button
+										className="btn btn-secondary"
+										onClick={prevPage}
+									>
+										Previous
+									</button>
+								)}
+								<button
+									className="btn btn-primary"
+									onClick={nextPage}
+									disabled={isCurrentPageQuiz && !isQuizPassedPerfectly}
+								>
+									Next
+								</button>
+							</div>
+						</>
+					) : (
+						<LoadingSpinner />
+					)}
+				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }

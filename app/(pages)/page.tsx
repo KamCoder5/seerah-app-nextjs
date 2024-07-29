@@ -1,7 +1,7 @@
 export default function Home() {
 	return (
 		<main>
-			<h1>The Seerah app</h1>
+			<h1>The Seerah app landing page here</h1>
 		</main>
 	);
 }
