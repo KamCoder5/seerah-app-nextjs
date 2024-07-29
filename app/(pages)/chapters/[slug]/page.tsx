@@ -7,6 +7,7 @@ import useFetchChapter from "@/hooks/useFetchChapter";
 import useQuiz from "@/hooks/useQuiz";
 import useChapterStore from "@/store/useChapterStore";
 import useFetchAllChapters from "@/hooks/useFetchAllChapters";
+import { LoadingSpinner } from "@/components/spinner/Spinner";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -16,6 +17,7 @@ export default function ChaptersPage() {
 	const { data, isLoading, error } = useFetchChapter(slug || "");
 	const { unlockNextChapter } = useChapterStore();
 	const { data: allChaptersData } = useFetchAllChapters();
+	console.log(allChaptersData, "allChaptersData");
 
 	const { currentQuestion, showScore, score, isQuizPassedPerfectly, resetQuizState, handleAnswerOptionClick } = useQuiz(
 		data?.allQuizData ?? []
@@ -41,7 +43,7 @@ export default function ChaptersPage() {
 
 	const isCurrentPageQuiz = data?.contentSections?.length > 0 && data?.allQuizData?.[pageIndex]?.length > 0;
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading) return <LoadingSpinner />;
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	return (
@@ -121,7 +123,7 @@ export default function ChaptersPage() {
 						</div>
 					</>
 				) : (
-					<p>Loading...</p>
+					<LoadingSpinner />
 				)}
 			</div>
 		</div>
