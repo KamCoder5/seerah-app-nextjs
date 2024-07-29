@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { FaCode } from "react-icons/fa";
 import useFetchChapter from "@/hooks/useFetchChapter";
@@ -43,7 +43,7 @@ export default function ChaptersPage() {
 		}
 	};
 
-	const isCurrentPageQuiz = data?.contentSections?.length > 0 && data?.allQuizData?.[pageIndex]?.length > 0;
+	const isCurrentPageQuiz = (data?.contentSections?.length ?? 0) > 0 && data?.allQuizData?.[pageIndex]?.length > 0;
 
 	if (isLoading) return <LoadingSpinner />;
 	if (error) return <p>Error fetching content: {error.message}</p>;
@@ -69,7 +69,7 @@ export default function ChaptersPage() {
 						<>
 							<div
 								dangerouslySetInnerHTML={{
-									__html: data.contentSections[pageIndex],
+									__html: data?.contentSections[pageIndex] ?? "",
 								}}
 							/>
 
@@ -78,9 +78,9 @@ export default function ChaptersPage() {
 									{showScore ? (
 										<div className="mt-4">
 											<p className="font-bold">
-												You scored {score} out of {data.allQuizData[pageIndex]?.length ?? 0}
+												You scored {score} out of {data?.allQuizData[pageIndex]?.length ?? 0}
 											</p>
-											{score < (data.allQuizData[pageIndex]?.length ?? 0) && (
+											{score < (data?.allQuizData[pageIndex]?.length ?? 0) && (
 												<button
 													className="btn btn-primary"
 													onClick={resetQuizState}
@@ -93,20 +93,40 @@ export default function ChaptersPage() {
 										<>
 											<div className="mt-4">
 												<p className="font-bold">
-													Question {currentQuestion + 1} / {data.allQuizData[pageIndex]?.length ?? 0}
+													Question {currentQuestion + 1} / {data?.allQuizData[pageIndex]?.length ?? 0}
 												</p>
-												<p>{data.allQuizData[pageIndex]?.[currentQuestion]?.questionText}</p>
+												<p>{data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}</p>
 											</div>
 											<div className="mt-4">
-												{data.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions.map((answerOption, index) => (
-													<button
-														key={index}
-														className="btn btn-outline mt-2"
-														onClick={() => handleAnswerOptionClick(answerOption.isCorrect, data.allQuizData, pageIndex)}
-													>
-														{answerOption.answerText}
-													</button>
-												))}
+												{data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions?.map(
+													(
+														answerOption: {
+															isCorrect: boolean;
+															answerText:
+																| string
+																| number
+																| bigint
+																| boolean
+																| ReactElement<any, string | JSXElementConstructor<any>>
+																| Iterable<ReactNode>
+																| ReactPortal
+																| Promise<AwaitedReactNode>
+																| null
+																| undefined;
+														},
+														index: Key | null | undefined
+													) => (
+														<button
+															key={index}
+															className="btn btn-outline mt-2"
+															onClick={() =>
+																handleAnswerOptionClick(answerOption.isCorrect, data.allQuizData, pageIndex)
+															}
+														>
+															{answerOption.answerText}
+														</button>
+													)
+												)}
 											</div>
 										</>
 									)}

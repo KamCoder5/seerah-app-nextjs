@@ -31,10 +31,12 @@ const useQuiz = (initialQuizData: QuizData) => {
 		}
 
 		const nextQuestion = currentQuestion + 1;
+		// @ts-ignore
 		if (quizData[pageIndex] && nextQuestion < quizData[pageIndex].length) {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
+			// @ts-ignore
 			if (score + (isCorrect ? 1 : 0) === quizData[pageIndex].length) {
 				setIsQuizPassedPerfectly(true);
 			}

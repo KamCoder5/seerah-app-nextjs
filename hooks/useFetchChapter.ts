@@ -18,7 +18,7 @@ interface QuizData {
 
 interface FetchContentResult {
 	contentSections: string[];
-	allQuizData: QuizData[];
+	allQuizData: any;
 }
 
 const fetchContent = async (slug: string): Promise<FetchContentResult> => {
