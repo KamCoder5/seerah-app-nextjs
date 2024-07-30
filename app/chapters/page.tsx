@@ -7,8 +7,8 @@ import useFetchAllChapters from "@/hooks/useFetchAllChapters";
 import useChapterStore from "@/store/useChapterStore";
 import { getCurrentChapter } from "@/lib/utils";
 import { pageVariants, pageTransition } from "@/lib/animation";
-import ChapterHeader from "@/components/chapter-header/ChapterHeader";
-import ChapterList from "@/components/chapter-list/ChapterList";
+import ChapterHeader from "@/components/chapters/ChapterHeader";
+import ChapterList from "@/components/chapters/ChapterList";
 import ContinueReadingButton from "@/components/ui/button/ContinueReadingButton";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
 
