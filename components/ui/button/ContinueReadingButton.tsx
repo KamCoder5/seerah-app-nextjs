@@ -22,7 +22,7 @@ const ContinueReadingButton: React.FC<StyledButtonProps> = ({
 	return (
 		<button
 			className={cn(
-				"flex justify-center items-center rounded-lg min-h-20 bg-[#27576C]",
+				"flex justify-center items-center rounded-lg min-h-20 bg-blue-500 w-full",
 				disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
 			)}
 			onClick={disabled ? undefined : onClick}

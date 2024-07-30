@@ -17,7 +17,7 @@ import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 
 export default function ChaptersPage() {
 	const router = useRouter();
-	const { slug } = useParams() as { slug: string }; // Ensure that slug is a string
+	const { slug } = useParams() as { slug: string };
 
 	const [pageIndex, setPageIndex] = useState(0);
 	const { data, isLoading, error } = useFetchChapter(slug || "");
@@ -28,14 +28,25 @@ export default function ChaptersPage() {
 		data?.allQuizData ?? []
 	);
 
-	const nextPage = () => {
-		if (data && data.contentSections && pageIndex < data.contentSections.length - 1) {
-			setPageIndex(pageIndex + 1);
-			resetQuizState();
-		} else if (data && pageIndex === data.contentSections.length - 1) {
-			const allChapterSlugs = allChaptersData?.map((chapter) => chapter.slug);
-			unlockNextChapter(slug, allChapterSlugs || []);
+	const hasMorePages = () => data && data.contentSections && pageIndex < data.contentSections.length - 1;
+	const isLastPage = () => data && pageIndex === data.contentSections.length - 1;
+
+	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
+
+	const finishChapter = () => {
+		if (allChaptersData) {
+			const allChapterSlugs = allChaptersData.map((chapter) => chapter.slug);
+			unlockNextChapter(slug, allChapterSlugs);
 			router.push("/chapters");
+		}
+	};
+
+	const nextPage = () => {
+		if (hasMorePages()) {
+			proceedToNextPage();
+			resetQuizState();
+		} else if (isLastPage()) {
+			finishChapter();
 		}
 	};
 
@@ -46,7 +57,7 @@ export default function ChaptersPage() {
 		}
 	};
 
-	if (isLoading) return <LoadingSpinner />;
+	if (isLoading) return <LoadingSpinner isCentered />;
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	return (
@@ -58,9 +69,6 @@ export default function ChaptersPage() {
 			transition={pageTransition}
 		>
 			<div className="container mx-auto p-4">
-				<div className="header flex items-center justify-center bg-gray-200 p-6">
-					<FaCode size={100} />
-				</div>
 				<div className="content mt-6">
 					<h1 className="text-2xl font-bold">Chapters</h1>
 					<p>
