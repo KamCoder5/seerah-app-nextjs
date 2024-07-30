@@ -1,6 +1,7 @@
+// pages/ChaptersPage.tsx
 "use client";
 
-import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
+import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { FaCode } from "react-icons/fa";
 import useFetchChapter from "@/hooks/useFetchChapter";
@@ -10,10 +11,9 @@ import useFetchAllChapters from "@/hooks/useFetchAllChapters";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
 import { motion } from "framer-motion";
 import { pageVariants, pageTransition } from "@/lib/animation";
-import QuizContainer from "@/components/quiz/QuizContainer";
-import QuizOptions from "@/components/quiz/QuizOptions";
-import QuizQuestion from "@/components/quiz/QuizQuestion";
-import QuizScore from "@/components/quiz/QuizScore";
+import ContentSection from "@/components/ContentSection";
+import NavigationButtons from "@/components/NavigationButtons";
+import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -23,7 +23,6 @@ export default function ChaptersPage() {
 	const { data, isLoading, error } = useFetchChapter(slug || "");
 	const { unlockNextChapter } = useChapterStore();
 	const { data: allChaptersData } = useFetchAllChapters();
-	console.log(allChaptersData, "allChaptersData");
 
 	const { currentQuestion, showScore, score, isQuizPassedPerfectly, resetQuizState, handleAnswerOptionClick } = useQuiz(
 		data?.allQuizData ?? []
@@ -47,8 +46,6 @@ export default function ChaptersPage() {
 		}
 	};
 
-	const isCurrentPageQuiz = (data?.contentSections?.length ?? 0) > 0 && data?.allQuizData?.[pageIndex]?.length > 0;
-
 	if (isLoading) return <LoadingSpinner />;
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
@@ -69,59 +66,25 @@ export default function ChaptersPage() {
 					<p>
 						Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
 					</p>
-					{(data?.contentSections?.length ?? 0) > 0 ? (
-						<>
-							<div
-								dangerouslySetInnerHTML={{
-									__html: data?.contentSections[pageIndex] ?? "",
-								}}
-							/>
-
-							{isCurrentPageQuiz && (
-								<QuizContainer>
-									{showScore ? (
-										<QuizScore
-											score={score}
-											totalQuestions={data?.allQuizData[pageIndex]?.length ?? 0}
-											onRetakeQuiz={resetQuizState}
-										/>
-									) : (
-										<>
-											<QuizQuestion
-												questionNumber={currentQuestion + 1}
-												totalQuestions={data?.allQuizData[pageIndex]?.length ?? 0}
-												questionText={data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}
-											/>
-											<QuizOptions
-												options={data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions || []}
-												onOptionClick={(isCorrect) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
-											/>
-										</>
-									)}
-								</QuizContainer>
-							)}
-
-							<div className="flex justify-between mt-6">
-								{pageIndex > 0 && (
-									<button
-										className="btn btn-secondary"
-										onClick={prevPage}
-									>
-										Previous
-									</button>
-								)}
-								<button
-									className="btn btn-primary"
-									onClick={nextPage}
-									disabled={isCurrentPageQuiz && !isQuizPassedPerfectly}
-								>
-									Next
-								</button>
-							</div>
-						</>
-					) : (
-						<LoadingSpinner />
-					)}
+					<ContentSection
+						contentHtml={data?.contentSections[pageIndex] ?? ""}
+						isQuiz={isCurrentPageQuiz(data, pageIndex)}
+						showScore={showScore}
+						score={score}
+						totalQuestions={data?.allQuizData[pageIndex]?.length ?? 0}
+						questionNumber={currentQuestion + 1}
+						questionText={data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}
+						options={data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions || []}
+						onOptionClick={(isCorrect) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
+						onRetakeQuiz={() => resetQuiz(resetQuizState)}
+					/>
+					<NavigationButtons
+						onNext={nextPage}
+						onPrev={prevPage}
+						hasNext={!!(data?.contentSections && pageIndex < data.contentSections.length - 1)}
+						hasPrev={pageIndex > 0}
+						disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
+					/>
 				</div>
 			</div>
 		</motion.div>
