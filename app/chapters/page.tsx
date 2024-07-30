@@ -7,7 +7,7 @@ import useFetchAllChapters from "@/hooks/useFetchAllChapters";
 import useChapterStore from "@/store/useChapterStore";
 import { getCurrentChapter } from "@/lib/utils";
 import { pageVariants, pageTransition } from "@/lib/animation";
-import Header from "@/components/chapter-header/ChapterHeader";
+import ChapterHeader from "@/components/chapter-header/ChapterHeader";
 import ChapterList from "@/components/chapter-list/ChapterList";
 import ContinueReadingButton from "@/components/ui/button/ContinueReadingButton";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
@@ -21,7 +21,7 @@ const ChaptersRoot: React.FC = () => {
 		router.push(`/chapters/${slug}`);
 	};
 
-	if (isLoading) return <LoadingSpinner />;
+	if (isLoading) return <LoadingSpinner isCentered />;
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	const currentChapter = getCurrentChapter(unlockedChapters, data);
@@ -36,7 +36,7 @@ const ChaptersRoot: React.FC = () => {
 		>
 			<main>
 				<div className="flex flex-col items-center px-4 py-6">
-					<Header />
+					<ChapterHeader />
 					<ChapterList
 						chapters={data || []}
 						unlockedChapters={unlockedChapters}
