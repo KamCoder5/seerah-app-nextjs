@@ -3,7 +3,7 @@ import { Lora } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const lora = Lora({ subsets: ["latin"] });
 
@@ -18,10 +18,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<Providers>
-				<body className={cn(lora.className, "container max-w-sm m-auto")}>{children}</body>
-			</Providers>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<Providers>
+					<body className={cn(lora.className, "container max-w-sm m-auto")}>{children}</body>
+				</Providers>
+			</html>
+		</ClerkProvider>
 	);
 }
