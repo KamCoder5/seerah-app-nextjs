@@ -23,3 +23,44 @@ body {
 		text-wrap: balance;
 	}
 }
+
+/* Custom styles for WordPress blocks */
+.wp-block-quote {
+	@apply border-l-4 border-gray-300 pl-4 text-gray-700;
+}
+
+.wp-block-quote .quote-text {
+	@apply italic text-lg;
+}
+
+.wp-block-quote .quote-source {
+	@apply text-sm text-gray-500;
+}
+
+.wp-block-image img {
+	@apply max-w-full h-auto rounded-lg shadow-md;
+}
+
+.content-text {
+	@apply mb-4 leading-relaxed;
+}
+
+.quiz-block {
+	@apply bg-blue-100 p-4 rounded-lg shadow-md;
+}
+
+.next-page-divider {
+	@apply my-8 border-t border-gray-200;
+}
+
+.title {
+	@apply text-3xl font-bold mb-4;
+}
+
+.subtitle {
+	@apply text-xl font-semibold mb-2;
+}
+
+.image-caption {
+	@apply text-sm text-gray-500 mt-2;
+}
