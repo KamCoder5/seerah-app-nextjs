@@ -1,6 +1,6 @@
+import axios from "axios";
+import { BASE_URL, TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-
-const BASE_URL = "https://theseerahapp.com";
 
 interface Chapter {
 	slug: string;
@@ -10,7 +10,6 @@ interface Chapter {
 }
 
 interface QuizData {
-	// Define the structure of the quiz data as per your requirement
 	question: string;
 	options: string[];
 	correctAnswer: string;
@@ -24,15 +23,16 @@ interface FetchContentResult {
 const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 	const API_URL = `${BASE_URL}/wp-json/wp/v2/chapter?slug=${slug}`;
 	try {
-		const response = await fetch(API_URL);
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
+		const response = await axios.get<Chapter[]>(API_URL);
+		const data = response.data;
+
+		if (data.length === 0) {
+			throw new Error("No content found for the provided slug.");
 		}
-		const data: Chapter[] = await response.json();
+
 		const renderedContent = data[0].content.rendered;
 		const contentSections = renderedContent.split("<!--nextpage-->");
 
-		// Extract quiz data without using cheerio
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(renderedContent, "text/html");
 
@@ -53,7 +53,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 
 		return { contentSections, allQuizData };
 	} catch (error: any) {
-		throw new Error(`Error fetching content: ${error.message}`);
+		throw new Error(`Error fetching content: ${error.response?.data?.message || error.message}`);
 	}
 };
 
@@ -61,7 +61,7 @@ const useFetchChapter = (slug: string): UseQueryResult<FetchContentResult, Error
 	return useQuery({
 		queryKey: ["content", slug],
 		queryFn: () => fetchContent(slug),
-		staleTime: 1000 * 60 * 60, // 1 hour
+		staleTime: TWENTY_FOUR_HOURS,
 	});
 };
 

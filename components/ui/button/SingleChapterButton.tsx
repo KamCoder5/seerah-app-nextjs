@@ -1,11 +1,8 @@
+import React from "react";
 import Image from "next/image";
 import { FaChevronRight, FaLock } from "react-icons/fa";
-import { clsx, ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
-}
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface StyledButtonProps {
 	title: string;
@@ -43,16 +40,18 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({ title, onClick, chap
 	);
 
 	return (
-		<button
+		<motion.button
 			className={cn(
 				"flex items-center rounded-lg h-20 bg-white shadow-md gap-2 w-full pr-2",
 				disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
 			)}
 			onClick={disabled ? undefined : onClick}
 			disabled={disabled}
+			whileHover={{ scale: disabled ? 1 : 1.05 }}
+			whileTap={{ scale: disabled ? 1 : 0.95 }}
 		>
 			{isChapterUnlocked()}
-		</button>
+		</motion.button>
 	);
 };
 

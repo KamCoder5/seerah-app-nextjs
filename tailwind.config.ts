@@ -13,7 +13,7 @@ const config: Config = {
 				"gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
 			colors: {
-				korma: {
+				brown: {
 					DEFAULT: "#814F0F",
 					50: "#ECAD5C",
 					100: "#EAA349",
