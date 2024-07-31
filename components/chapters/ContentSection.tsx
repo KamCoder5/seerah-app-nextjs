@@ -31,7 +31,10 @@ const ContentSection: React.FC<ContentSectionProps> = ({
 }) => {
 	return (
 		<div>
-			<div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+			<div
+				dangerouslySetInnerHTML={{ __html: contentHtml }}
+				className="wp-content"
+			/>
 
 			{isQuiz && (
 				<QuizContainer>

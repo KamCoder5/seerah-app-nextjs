@@ -73,3 +73,11 @@ h6 {
 .image-caption {
 	@apply text-sm text-gray-500 mt-2;
 }
+
+.wp-content p:not(blockquote p) {
+	@apply mb-3;
+}
+
+.wp-content .wp-block-cover {
+	@apply mb-3;
+}
