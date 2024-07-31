@@ -22,13 +22,13 @@ const ContinueReadingButton: React.FC<StyledButtonProps> = ({
 	return (
 		<button
 			className={cn(
-				"flex justify-center items-center rounded-lg min-h-20 bg-blue-500 w-full",
+				"text-sm flex justify-center items-center rounded-lg min-h-20 bg-blue-500 w-full",
 				disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
 			)}
 			onClick={disabled ? undefined : onClick}
 			disabled={disabled}
 		>
-			<span className="text-white text-lg font-medium">{CHAPTER_NUMBER_TITLE}</span>
+			<span className="text-white text-base">{CHAPTER_NUMBER_TITLE}</span>
 		</button>
 	);
 };

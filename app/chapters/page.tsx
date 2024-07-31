@@ -44,7 +44,7 @@ const ChaptersRoot: React.FC = () => {
 					/>
 					<ContinueReadingButton
 						slug={currentChapter?.slug || "loading"}
-						title={currentChapter?.subtitle || "loading"}
+						title="Continue Reading"
 						onClick={() => handleChapterClick(currentChapter?.slug || "loading")}
 					/>
 				</div>
