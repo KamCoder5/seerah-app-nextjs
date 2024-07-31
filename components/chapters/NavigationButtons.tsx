@@ -26,16 +26,14 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onNext, onPrev, h
 				<div />
 			)}{" "}
 			{/* Placeholder to keep buttons inline when no previous button */}
-			{hasNext && (
-				<button
-					className={cn("btn btn-primary flex items-center", disableNext && "opacity-50 cursor-not-allowed")}
-					onClick={onNext}
-					disabled={disableNext}
-				>
-					Next
-					<FaArrowRight className="ml-2" />
-				</button>
-			)}
+			<button
+				className={cn("btn btn-primary flex items-center", disableNext && "opacity-50 cursor-not-allowed")}
+				onClick={onNext}
+				disabled={disableNext}
+			>
+				{hasNext ? "Next" : "Finish"}
+				<FaArrowRight className="ml-2" />
+			</button>
 		</div>
 	);
 };
