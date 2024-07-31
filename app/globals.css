@@ -46,7 +46,7 @@ body {
 }
 
 .quiz-block {
-	@apply bg-blue-100 p-4 rounded-lg shadow-md;
+	@apply hidden invisible;
 }
 
 .next-page-divider {
