@@ -1,5 +1,6 @@
 // components/QuizQuestion.tsx
 import React from "react";
+import { motion } from "framer-motion";
 
 interface QuizQuestionProps {
 	questionNumber: number;
@@ -9,12 +10,17 @@ interface QuizQuestionProps {
 
 const QuizQuestion: React.FC<QuizQuestionProps> = ({ questionNumber, totalQuestions, questionText }) => {
 	return (
-		<div className="mb-4">
+		<motion.div
+			className="mb-4"
+			initial={{ opacity: 0, y: 10 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.5 }}
+		>
 			<p className="text-xl font-semibold">
 				Question {questionNumber} / {totalQuestions}
 			</p>
 			<p className="text-lg">{questionText}</p>
-		</div>
+		</motion.div>
 	);
 };
 
