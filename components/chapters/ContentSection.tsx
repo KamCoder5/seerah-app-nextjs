@@ -1,9 +1,9 @@
 // components/ContentSection.tsx
 import React from "react";
-import QuizContainer from "./quiz/QuizContainer";
-import QuizOptions from "./quiz/QuizOptions";
-import QuizQuestion from "./quiz/QuizQuestion";
-import QuizScore from "./quiz/QuizScore";
+import QuizContainer from "../quiz/QuizContainer";
+import QuizOptions from "../quiz/QuizOptions";
+import QuizQuestion from "../quiz/QuizQuestion";
+import QuizScore from "../quiz/QuizScore";
 interface ContentSectionProps {
 	contentHtml: string;
 	isQuiz: boolean;

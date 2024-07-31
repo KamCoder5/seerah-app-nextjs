@@ -4,6 +4,10 @@ export type Chapter = {
 	title: {
 		rendered: string;
 	};
+	acf: {
+		is_new: boolean;
+		subtitle: string;
+	};
 	subtitle: string;
 };
 

@@ -1,20 +1,18 @@
-// pages/ChaptersPage.tsx
 "use client";
 
 import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { FaCode } from "react-icons/fa";
+import ContentSection from "@/components/chapters/ContentSection";
+import NavigationButtons from "@/components/chapters/NavigationButtons";
+import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
+import Typography from "@/components/ui/typography/Typography";
+import useFetchAllChapters from "@/hooks/useFetchAllChapters";
 import useFetchChapter from "@/hooks/useFetchChapter";
 import useQuiz from "@/hooks/useQuiz";
-import useChapterStore from "@/store/useChapterStore";
-import useFetchAllChapters from "@/hooks/useFetchAllChapters";
-import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
-import { motion } from "framer-motion";
 import { pageVariants, pageTransition } from "@/lib/animation";
-import ContentSection from "@/components/ContentSection";
-import NavigationButtons from "@/components/NavigationButtons";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
-import Typography from "@/components/ui/typography/Typography";
+import useChapterStore from "@/store/useChapterStore";
+import { motion } from "framer-motion";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -84,7 +82,7 @@ export default function ChaptersPage() {
 						questionNumber={currentQuestion + 1}
 						questionText={data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}
 						options={data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions || []}
-						onOptionClick={(isCorrect) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
+						onOptionClick={(isCorrect: boolean) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
 						onRetakeQuiz={() => resetQuiz(resetQuizState)}
 					/>
 					<NavigationButtons

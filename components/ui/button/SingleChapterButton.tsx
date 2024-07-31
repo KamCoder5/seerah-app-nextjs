@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FaChevronRight, FaLock } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Badge } from "../badge/Badge";
 
 interface StyledButtonProps {
 	title: string;
@@ -10,9 +11,17 @@ interface StyledButtonProps {
 	slug: string;
 	onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	disabled?: boolean;
+	isNew?: boolean;
 }
 
-const SingleChapterButton: React.FC<StyledButtonProps> = ({ title, onClick, chapterImage, slug, disabled = false }) => {
+const SingleChapterButton: React.FC<StyledButtonProps> = ({
+	title,
+	onClick,
+	chapterImage,
+	slug,
+	disabled = false,
+	isNew = false,
+}) => {
 	const chapterNumber = slug.split("chapter-")[1];
 
 	const isChapterUnlocked = () => (
@@ -39,10 +48,21 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({ title, onClick, chap
 		</>
 	);
 
+	const isNewChapter = (showBadge: boolean) => {
+		if (showBadge) {
+			return (
+				<div className="absolute top-1 left-1 z-10">
+					<Badge variant="secondary">new</Badge>
+				</div>
+			);
+		}
+		return null;
+	};
+
 	return (
 		<motion.button
 			className={cn(
-				"flex items-center rounded-lg h-20 bg-white shadow-md gap-2 w-full pr-2",
+				"flex items-center rounded-lg h-20 bg-white shadow-md gap-2 w-full pr-2 relative",
 				disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
 			)}
 			onClick={disabled ? undefined : onClick}
@@ -50,6 +70,7 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({ title, onClick, chap
 			whileHover={{ scale: disabled ? 1 : 1.05 }}
 			whileTap={{ scale: disabled ? 1 : 0.95 }}
 		>
+			{isNewChapter(isNew)}
 			{isChapterUnlocked()}
 		</motion.button>
 	);

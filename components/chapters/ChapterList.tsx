@@ -28,9 +28,10 @@ interface ChapterItemProps {
 	chapter: Chapter;
 	unlockedChapters: string[];
 	onChapterClick: (slug: string) => void;
+	isNew?: boolean;
 }
 
-const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, unlockedChapters, onChapterClick }) => {
+const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, unlockedChapters, onChapterClick, isNew }) => {
 	return (
 		<div className="mt-4">
 			<SingleChapterButton
@@ -38,6 +39,7 @@ const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, unlockedChapters, on
 				slug={chapter.slug}
 				onClick={() => onChapterClick(chapter.slug)}
 				disabled={!unlockedChapters.includes(chapter.slug)}
+				isNew={chapter.acf.is_new}
 			/>
 		</div>
 	);
