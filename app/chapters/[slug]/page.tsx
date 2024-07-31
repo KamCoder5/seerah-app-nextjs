@@ -14,6 +14,7 @@ import { pageVariants, pageTransition } from "@/lib/animation";
 import ContentSection from "@/components/ContentSection";
 import NavigationButtons from "@/components/NavigationButtons";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
+import Typography from "@/components/ui/typography/Typography";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -70,7 +71,7 @@ export default function ChaptersPage() {
 		>
 			<div className="container mx-auto p-4">
 				<div className="content mt-6">
-					<h1 className="text-2xl font-bold">Chapters</h1>
+					<Typography variant="h2">Chapters</Typography>
 					<p>
 						Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
 					</p>

@@ -24,6 +24,12 @@ body {
 	}
 }
 
+h1,
+h2,
+h3 {
+	@apply text-brown-500;
+}
+
 /* Custom styles for WordPress blocks */
 .wp-block-quote {
 	@apply border-l-4 border-gray-300 pl-4 text-gray-700;

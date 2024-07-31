@@ -18,12 +18,12 @@ type Variant =
 
 // Define a mapping of variant names to Tailwind classes
 const variantClasses: Record<Variant, string> = {
-	h1: "text-5xl font-bold",
-	h2: "text-4xl font-bold",
-	h3: "text-3xl font-bold",
-	h4: "text-2xl font-bold",
-	h5: "text-xl font-bold",
-	h6: "text-lg font-bold",
+	h1: "text-5xl font-semibold",
+	h2: "text-4xl font-semibold",
+	h3: "text-3xl font-semibold",
+	h4: "text-2xl font-semibold",
+	h5: "text-xl font-semibold",
+	h6: "text-lg font-semibold",
 	subtitle1: "text-base font-medium",
 	subtitle2: "text-sm font-medium",
 	body1: "text-base",
