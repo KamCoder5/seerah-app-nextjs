@@ -13,6 +13,7 @@ import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 import useChapterStore from "@/store/useChapterStore";
 import { motion } from "framer-motion";
+import ProgressBar from "@/components/ui/progress-bar/ProgressBar";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -22,6 +23,8 @@ export default function ChaptersPage() {
 	const { data, isLoading, error } = useFetchChapter(slug || "");
 	const { unlockNextChapter } = useChapterStore();
 	const { data: allChaptersData } = useFetchAllChapters();
+
+	console.log(data, "data");
 
 	const { currentQuestion, showScore, score, isQuizPassedPerfectly, resetQuizState, handleAnswerOptionClick } = useQuiz(
 		data?.allQuizData ?? []
@@ -69,10 +72,13 @@ export default function ChaptersPage() {
 		>
 			<div className="container mx-auto p-4">
 				<div className="content mt-6">
-					<Typography variant="h2">Chapters</Typography>
-					<p>
-						Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
-					</p>
+					<Typography variant="h4">{data?.subtitle}</Typography>
+					<div className="flex justify-evenly items-center mt-2 mb-6">
+						<p className="min-w-32 text-xs">
+							Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
+						</p>
+						<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
+					</div>
 					<ContentSection
 						contentHtml={data?.contentSections[pageIndex] ?? ""}
 						isQuiz={isCurrentPageQuiz(data, pageIndex)}

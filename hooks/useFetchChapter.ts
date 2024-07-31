@@ -2,13 +2,6 @@ import axios from "axios";
 import { BASE_URL, TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-interface Chapter {
-	slug: string;
-	content: {
-		rendered: string;
-	};
-}
-
 interface QuizData {
 	question: string;
 	options: string[];
@@ -18,12 +11,13 @@ interface QuizData {
 interface FetchContentResult {
 	contentSections: string[];
 	allQuizData: any;
+	subtitle: string;
 }
 
 const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 	const API_URL = `${BASE_URL}/wp-json/wp/v2/chapter?slug=${slug}`;
 	try {
-		const response = await axios.get<Chapter[]>(API_URL);
+		const response = await axios.get(API_URL);
 		const data = response.data;
 
 		if (data.length === 0) {
@@ -32,6 +26,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 
 		const renderedContent = data[0].content.rendered;
 		const contentSections = renderedContent.split("<!--nextpage-->");
+		const subtitle = data[0].subtitle || data[0].title.rendered;
 
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(renderedContent, "text/html");
@@ -51,7 +46,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 			}
 		});
 
-		return { contentSections, allQuizData };
+		return { contentSections, allQuizData, subtitle };
 	} catch (error: any) {
 		throw new Error(`Error fetching content: ${error.response?.data?.message || error.message}`);
 	}
