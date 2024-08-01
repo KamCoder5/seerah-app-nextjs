@@ -8,7 +8,6 @@ export type Chapter = {
 		is_new: boolean;
 		subtitle: string;
 	};
-	subtitle: string;
 };
 
 export type Chapters = Chapter[];

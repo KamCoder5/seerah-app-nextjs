@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { Chapter } from "@/types/chapters";
-import { BASE_URL, TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
+import { TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
+import { BASE_URL } from "@/constants/appConstants";
 
 const API_URL = `${BASE_URL}/wp-json/wp/v2/chapter?_fields=id,title,slug,subtitle,acf&orderby=date&order=asc`;
 

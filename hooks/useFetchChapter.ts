@@ -1,6 +1,7 @@
 import axios from "axios";
-import { BASE_URL, TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
+import { TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { BASE_URL } from "@/constants/appConstants";
 
 interface QuizData {
 	question: string;
@@ -23,10 +24,10 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 		if (data.length === 0) {
 			throw new Error("No content found for the provided slug.");
 		}
-
+		console.log(data, "data");
 		const renderedContent = data[0].content.rendered;
 		const contentSections = renderedContent.split("<!--nextpage-->");
-		const subtitle = data[0].subtitle || data[0].title.rendered;
+		const subtitle = data[0].acf.subtitle || data[0].title.rendered;
 
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(renderedContent, "text/html");

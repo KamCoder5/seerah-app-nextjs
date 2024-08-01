@@ -35,7 +35,7 @@ const ChapterItem: React.FC<ChapterItemProps> = ({ chapter, unlockedChapters, on
 	return (
 		<div className="mt-4">
 			<SingleChapterButton
-				title={chapter.subtitle}
+				title={chapter.acf.subtitle}
 				slug={chapter.slug}
 				onClick={() => onChapterClick(chapter.slug)}
 				disabled={!unlockedChapters.includes(chapter.slug)}
