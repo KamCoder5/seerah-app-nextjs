@@ -3,6 +3,7 @@ import { Lora } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { cn } from "@/lib/utils";
+import { GoogleAnalytics } from "@next/third-parties/google";
 const lora = Lora({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
 			<Providers>
 				<body className={cn(lora.className, "container max-w-sm m-auto")}>{children}</body>
 			</Providers>
+			<GoogleAnalytics gaId="G-8EF00F7XR9" />
 		</html>
 	);
 }
