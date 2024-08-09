@@ -70,35 +70,33 @@ export default function ChaptersPage() {
 			variants={pageVariants}
 			transition={pageTransition}
 		>
-			<div className="container mx-auto p-4">
-				<div className="content mt-6">
-					<Typography variant="h4">{data?.subtitle}</Typography>
-					<div className="flex justify-evenly items-center mt-2 mb-6">
-						<p className="min-w-28 text-xs">
-							Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
-						</p>
-						<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
-					</div>
-					<ContentSection
-						contentHtml={data?.contentSections[pageIndex] ?? ""}
-						isQuiz={isCurrentPageQuiz(data, pageIndex)}
-						showScore={showScore}
-						score={score}
-						totalQuestions={data?.allQuizData[pageIndex]?.length ?? 0}
-						questionNumber={currentQuestion + 1}
-						questionText={data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}
-						options={data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions || []}
-						onOptionClick={(isCorrect: boolean) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
-						onRetakeQuiz={() => resetQuiz(resetQuizState)}
-					/>
-					<NavigationButtons
-						onNext={nextPage}
-						onPrev={prevPage}
-						hasNext={!!(data?.contentSections && pageIndex < data.contentSections.length - 1)}
-						hasPrev={pageIndex > 0}
-						disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
-					/>
+			<div className="content mt-6">
+				<Typography variant="h4">{data?.subtitle}</Typography>
+				<div className="flex justify-evenly items-center mt-2 mb-6">
+					<p className="min-w-28 text-xs">
+						Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
+					</p>
+					<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
 				</div>
+				<ContentSection
+					contentHtml={data?.contentSections[pageIndex] ?? ""}
+					isQuiz={isCurrentPageQuiz(data, pageIndex)}
+					showScore={showScore}
+					score={score}
+					totalQuestions={data?.allQuizData[pageIndex]?.length ?? 0}
+					questionNumber={currentQuestion + 1}
+					questionText={data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}
+					options={data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions || []}
+					onOptionClick={(isCorrect: boolean) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
+					onRetakeQuiz={() => resetQuiz(resetQuizState)}
+				/>
+				<NavigationButtons
+					onNext={nextPage}
+					onPrev={prevPage}
+					hasNext={!!(data?.contentSections && pageIndex < data.contentSections.length - 1)}
+					hasPrev={pageIndex > 0}
+					disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
+				/>
 			</div>
 		</motion.div>
 	);
