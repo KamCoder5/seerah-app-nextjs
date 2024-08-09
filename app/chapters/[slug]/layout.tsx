@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 	const isChaptersPage = pathname === "/chapters";
 	return (
 		<>
-			<div className="container max-w-3xl m-auto">
+			<div className="max-w-3xl m-auto mb-6">
 				{!isChaptersPage && (
 					<>
 						<header className="flex items-center text-brown-500 my-3 md:mt-12">

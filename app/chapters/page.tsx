@@ -35,7 +35,7 @@ const ChaptersRoot: React.FC = () => {
 			transition={pageTransition}
 		>
 			<main>
-				<div className="flex flex-col items-center px-4 py-6">
+				<div className="flex flex-col items-center">
 					<ChapterHeader />
 					<ChapterList
 						chapters={data || []}

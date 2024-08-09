@@ -7,7 +7,7 @@ type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
 	return (
 		<>
-			<div className="container max-w-3xl m-auto">
+			<div className="container max-w-3xl m-auto mt-3 md:mb-12">
 				<main>{children}</main>
 			</div>
 		</>
