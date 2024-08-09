@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<Providers>
-				<body className={cn(lora.className, "container max-w-sm m-auto")}>{children}</body>
+				<body className={cn(lora.className)}>{children}</body>
 			</Providers>
 			<GoogleAnalytics gaId="G-8EF00F7XR9" />
 		</html>
