@@ -40,7 +40,7 @@ const ChaptersRoot: React.FC = () => {
 			variants={pageVariants}
 			transition={pageTransition}
 		>
-			<main>
+			<main className="relative">
 				<div className="flex flex-col items-center">
 					<ChapterHeader />
 					<ChapterList
@@ -48,11 +48,13 @@ const ChaptersRoot: React.FC = () => {
 						unlockedChapters={unlockedChapters}
 						onChapterClick={handleChapterClick}
 					/>
-					<ContinueReadingButton
-						slug={currentChapter?.slug || "loading"}
-						title="Continue Reading"
-						onClick={() => handleChapterClick(currentChapter?.slug || "loading")}
-					/>
+					<div className="fixed bottom-0 py-3 w-full container bg-[#f1ede8] shadow-xl">
+						<ContinueReadingButton
+							slug={currentChapter?.slug || "loading"}
+							title="Continue Reading"
+							onClick={() => handleChapterClick(currentChapter?.slug || "loading")}
+						/>
+					</div>
 				</div>
 			</main>
 		</motion.div>
