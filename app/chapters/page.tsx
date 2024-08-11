@@ -40,15 +40,17 @@ const ChaptersRoot: React.FC = () => {
 			variants={pageVariants}
 			transition={pageTransition}
 		>
-			<main className="relative">
-				<div className="flex flex-col items-center">
+			<main className="relative min-h-screen flex flex-col justify-between">
+				<div className="flex flex-col items-center flex-grow">
 					<ChapterHeader />
 					<ChapterList
 						chapters={data || []}
 						unlockedChapters={unlockedChapters}
 						onChapterClick={handleChapterClick}
 					/>
-					<div className="fixed bottom-0 py-3 w-full container max-w-3xl m-auto bg-[#f1ede8] shadow-xl">
+				</div>
+				<div className="fixed bottom-0 left-0 right-0 py-3 bg-[#f1ede8] shadow-xl z-50">
+					<div className="container max-w-3xl m-auto">
 						<ContinueReadingButton
 							slug={currentChapter?.slug || "loading"}
 							title="Continue Reading"
