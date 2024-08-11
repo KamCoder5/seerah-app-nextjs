@@ -73,7 +73,7 @@ export default function ChaptersPage() {
 			variants={pageVariants}
 			transition={pageTransition}
 		>
-			<div className="content mt-6">
+			<div className="content mt-4">
 				<Typography variant="h4">{data?.subtitle}</Typography>
 				<div className="flex justify-evenly items-center mt-2 mb-6">
 					<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
