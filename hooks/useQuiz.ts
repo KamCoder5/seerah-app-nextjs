@@ -17,27 +17,33 @@ const useQuiz = (initialQuizData: QuizData) => {
 	const [showScore, setShowScore] = useState<boolean>(false);
 	const [score, setScore] = useState<number>(0);
 	const [isQuizPassedPerfectly, setIsQuizPassedPerfectly] = useState<boolean>(false);
+	const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
 
 	const resetQuizState = () => {
 		setCurrentQuestion(0);
 		setShowScore(false);
 		setScore(0);
 		setIsQuizPassedPerfectly(false);
+		setIsOptionSelected(false);
 	};
 
-	const handleAnswerOptionClick = (isCorrect: boolean, quizData: QuizData, pageIndex: number) => {
+	const handleAnswerOptionClick = (isCorrect: boolean) => {
+		setIsOptionSelected(true);
 		if (isCorrect) {
 			setScore((prevScore) => prevScore + 1);
 		}
+	};
 
+	const handleNextQuestion = (quizData: QuizData, pageIndex: number) => {
 		const nextQuestion = currentQuestion + 1;
 		// @ts-ignore
 		if (quizData[pageIndex] && nextQuestion < quizData[pageIndex].length) {
 			setCurrentQuestion(nextQuestion);
+			setIsOptionSelected(false); // Reset the option selected state
 		} else {
 			setShowScore(true);
 			// @ts-ignore
-			if (score + (isCorrect ? 1 : 0) === quizData[pageIndex].length) {
+			if (score + (isOptionSelected ? 1 : 0) === quizData[pageIndex].length) {
 				setIsQuizPassedPerfectly(true);
 			}
 		}
@@ -48,8 +54,10 @@ const useQuiz = (initialQuizData: QuizData) => {
 		showScore,
 		score,
 		isQuizPassedPerfectly,
+		isOptionSelected,
 		resetQuizState,
 		handleAnswerOptionClick,
+		handleNextQuestion,
 	};
 };
 
