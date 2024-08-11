@@ -62,7 +62,13 @@ export default function ChaptersPage() {
 	const currentPageIndex = pageIndex + 1;
 	const contentLength = data?.contentSections?.length ?? 0;
 
-	if (isLoading) return <LoadingSpinner isCentered />;
+	if (isLoading)
+		return (
+			<LoadingSpinner
+				isCentered
+				isFullPage
+			/>
+		);
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	return (

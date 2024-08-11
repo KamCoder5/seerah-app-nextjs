@@ -21,7 +21,13 @@ const ChaptersRoot: React.FC = () => {
 		router.push(`/chapters/${slug}`);
 	};
 
-	if (isLoading) return <LoadingSpinner isCentered />;
+	if (isLoading)
+		return (
+			<LoadingSpinner
+				isCentered
+				isFullPage
+			/>
+		);
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	const currentChapter = getCurrentChapter(unlockedChapters, data);
