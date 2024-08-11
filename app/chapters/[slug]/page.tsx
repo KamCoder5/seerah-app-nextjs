@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ContentSection from "@/components/chapters/ContentSection";
-import NavigationButtons from "@/components/chapters/NavigationButtons";
+import NavigationButtonsBar from "@/components/chapters/NavigationButtonsBar";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
 import Typography from "@/components/ui/typography/Typography";
 import useFetchAllChapters from "@/hooks/useFetchAllChapters";
@@ -59,6 +59,9 @@ export default function ChaptersPage() {
 		}
 	};
 
+	const currentPageIndex = pageIndex + 1;
+	const contentLength = data?.contentSections?.length ?? 0;
+
 	if (isLoading) return <LoadingSpinner isCentered />;
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
@@ -73,9 +76,6 @@ export default function ChaptersPage() {
 			<div className="content mt-6">
 				<Typography variant="h4">{data?.subtitle}</Typography>
 				<div className="flex justify-evenly items-center mt-2 mb-6">
-					<p className="min-w-28 text-xs">
-						Page {pageIndex + 1} / {data?.contentSections?.length ?? 0}
-					</p>
 					<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
 				</div>
 				<ContentSection
@@ -90,12 +90,14 @@ export default function ChaptersPage() {
 					onOptionClick={(isCorrect: boolean) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
 					onRetakeQuiz={() => resetQuiz(resetQuizState)}
 				/>
-				<NavigationButtons
+				<NavigationButtonsBar
 					onNext={nextPage}
 					onPrev={prevPage}
 					hasNext={!!(data?.contentSections && pageIndex < data.contentSections.length - 1)}
 					hasPrev={pageIndex > 0}
 					disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
+					currentPageIndex={currentPageIndex}
+					contentLength={contentLength}
 				/>
 			</div>
 		</motion.div>
