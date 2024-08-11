@@ -21,7 +21,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 							<IoIosArrowBack className="text-xl" />
 							<Link href="/chapters">Chapters</Link>
 						</header>
-						<div className="border-b border-brown-500"></div>
 					</>
 				)}
 				<main>{children}</main>
