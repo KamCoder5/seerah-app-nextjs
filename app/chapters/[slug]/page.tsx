@@ -28,6 +28,8 @@ export default function ChaptersPage() {
 		data?.allQuizData?.[pageIndex]?.[0] ?? []
 	);
 
+	console.log(data?.allQuizData, "data?.allQuizData?");
+
 	const hasMorePages = () => data && data.contentSections && pageIndex < data.contentSections.length - 1;
 	const isLastPage = () => data && pageIndex === data.contentSections.length - 1;
 
