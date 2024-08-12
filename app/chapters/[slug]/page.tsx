@@ -83,11 +83,11 @@ export default function ChaptersPage() {
 					<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
 				</div>
 				<motion.div
-					key={pageIndex} // key is important for framer-motion to detect changes
-					initial={{ opacity: 0, x: 50 }} // start from the right
-					animate={{ opacity: 1, x: 0 }} // animate to being fully visible and centered
-					exit={{ opacity: 0, x: -50 }} // exit towards the left
-					transition={{ duration: 0.5 }} // control animation timing
+					key={pageIndex}
+					initial={{ opacity: 0, x: 50 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, x: -50 }}
+					transition={{ duration: 0.5 }}
 				>
 					<ContentSection
 						contentHtml={data?.contentSections[pageIndex] ?? ""}
