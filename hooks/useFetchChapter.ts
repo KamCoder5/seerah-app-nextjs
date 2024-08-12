@@ -24,7 +24,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 		if (data.length === 0) {
 			throw new Error("No content found for the provided slug.");
 		}
-		console.log(data, "data");
+
 		const renderedContent = data[0].content.rendered;
 		const contentSections = renderedContent.split("<!--nextpage-->");
 		const subtitle = data[0].acf.subtitle || data[0].title.rendered;
@@ -32,19 +32,31 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(renderedContent, "text/html");
 
-		const allQuizData: QuizData[] = [];
-		const quizElements = doc.querySelectorAll<HTMLElement>(".quiz-block");
+		const allQuizData: Record<number, QuizData[]> = {};
+		let currentPageIndex = 0;
 
-		quizElements.forEach((element) => {
-			const jsonString = element.getAttribute("data");
-			if (jsonString) {
-				try {
-					const jsonData: QuizData = JSON.parse(jsonString);
-					allQuizData.push(jsonData);
-				} catch (error) {
-					console.error("Error parsing JSON from quiz block data attribute:", error);
+		// Traverse the content sections and assign quizzes to the correct page index
+		contentSections.forEach((section: string, index: any) => {
+			const sectionDoc = parser.parseFromString(section, "text/html");
+			const quizElements = sectionDoc.querySelectorAll<HTMLElement>(".quiz-block");
+
+			quizElements.forEach((element) => {
+				const jsonString = element.getAttribute("data");
+				if (jsonString) {
+					try {
+						const jsonData: QuizData = JSON.parse(jsonString);
+						if (!allQuizData[currentPageIndex]) {
+							allQuizData[currentPageIndex] = [];
+						}
+						allQuizData[currentPageIndex].push(jsonData);
+					} catch (error) {
+						console.error("Error parsing JSON from quiz block data attribute:", error);
+					}
 				}
-			}
+			});
+
+			// Move to the next page
+			currentPageIndex++;
 		});
 
 		return { contentSections, allQuizData, subtitle };
