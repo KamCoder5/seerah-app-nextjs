@@ -1,6 +1,7 @@
 // components/QuizOptions.tsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface QuizOptionsProps {
 	options: { answerText: string; isCorrect: boolean }[];
@@ -23,6 +24,14 @@ const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick }) => 
 		onOptionClick(isCorrect);
 	};
 
+	const getOptionClasses = (index: number, isCorrect: boolean) => {
+		return cn("mt-2 p-3 w-full text-left rounded-md transition", {
+			"bg-green-500 text-white": hasSelected && isCorrect,
+			"bg-red-500 text-white": hasSelected && index === selectedOptionIndex && !isCorrect,
+			"bg-gray-100": !hasSelected || (hasSelected && !isCorrect && index !== selectedOptionIndex),
+			"hover:bg-gray-200": !hasSelected,
+		});
+	};
 	return (
 		<motion.div
 			className="mt-4"
@@ -42,16 +51,7 @@ const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick }) => 
 			{options.map((option, index) => (
 				<motion.button
 					key={index}
-					className={`mt-2 p-3 w-full text-left rounded-md transition 
-            ${
-							hasSelected
-								? option.isCorrect
-									? "bg-green-500 text-white"
-									: index === selectedOptionIndex
-										? "bg-red-500 text-white"
-										: "bg-gray-100"
-								: "bg-gray-100 hover:bg-gray-200"
-						}`}
+					className={getOptionClasses(index, option.isCorrect)}
 					onClick={() => handleOptionClick(index, option.isCorrect)}
 					disabled={hasSelected} // Disable further selections once an option is selected
 					whileHover={{ scale: 1.05 }}
