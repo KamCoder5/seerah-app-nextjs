@@ -4,14 +4,13 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { BASE_URL } from "@/constants/appConstants";
 
 interface QuizData {
-	question: string;
-	options: string[];
-	correctAnswer: string;
+	questionText: string;
+	answerOptions: { answerText: string; isCorrect: boolean }[];
 }
 
 interface FetchContentResult {
 	contentSections: string[];
-	allQuizData: any;
+	allQuizData: Record<number, QuizData[]>;
 	subtitle: string;
 }
 
@@ -32,7 +31,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(renderedContent, "text/html");
 
-		const allQuizData: Record<number, QuizData[][]> = {};
+		const allQuizData: Record<number, QuizData[]> = {};
 		let currentPageIndex = 0;
 
 		contentSections.forEach((section: string, index: any) => {
@@ -43,13 +42,12 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 				const jsonString = element.getAttribute("data");
 				if (jsonString) {
 					try {
-						const jsonData: QuizData = JSON.parse(jsonString);
+						const jsonData: QuizData[] = JSON.parse(jsonString);
 						if (Array.isArray(jsonData) && jsonData.length > 0) {
-							// Check if jsonData is an array and has elements
 							if (!allQuizData[currentPageIndex]) {
 								allQuizData[currentPageIndex] = [];
 							}
-							allQuizData[currentPageIndex].push(jsonData);
+							allQuizData[currentPageIndex] = allQuizData[currentPageIndex].concat(jsonData);
 						}
 					} catch (error) {
 						console.error("Error parsing JSON from quiz block data attribute:", error);
