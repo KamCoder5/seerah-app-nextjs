@@ -35,15 +35,15 @@ const useQuiz = (initialQuizData: QuizData) => {
 	};
 
 	const handleNextQuestion = (quizData: QuizData, pageIndex: number) => {
-		const nextQuestion = currentQuestion + 1;
 		// @ts-ignore
-		if (quizData[pageIndex] && nextQuestion < quizData[pageIndex].length) {
+		const quizLength = quizData[pageIndex].length;
+		const nextQuestion = currentQuestion + 1;
+		if (quizData[pageIndex] && nextQuestion < quizLength) {
 			setCurrentQuestion(nextQuestion);
-			setIsOptionSelected(false); // Reset the option selected state
+			setIsOptionSelected(false);
 		} else {
 			setShowScore(true);
-			// @ts-ignore
-			if (score + (isOptionSelected ? 1 : 0) === quizData[pageIndex].length) {
+			if (score === quizLength) {
 				setIsQuizPassedPerfectly(true);
 			}
 		}

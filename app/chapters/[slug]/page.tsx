@@ -78,9 +78,8 @@ export default function ChaptersPage() {
 		);
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
-	// TO FIX:  Disable the "Next" button on the navigation bar only if the quiz is not passed perfectly fix this 
 	const disableNextButton = isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly;
-
+	
 	return (
 		<motion.div
 			initial="initial"
@@ -114,7 +113,7 @@ export default function ChaptersPage() {
 						onRetakeQuiz={() => resetQuiz(resetQuizState)}
 						onNextQuestion={() => handleNextQuestion(data?.allQuizData, pageIndex)}
 						isOptionSelected={isOptionSelected}
-						isLastQuestion={isLastQuestion} // Pass down whether it's the last question
+						isLastQuestion={isLastQuestion}
 					/>
 				</motion.div>
 				<NavigationButtonsBar
