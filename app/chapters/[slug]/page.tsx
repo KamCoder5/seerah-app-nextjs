@@ -24,12 +24,21 @@ export default function ChaptersPage() {
 	const { unlockNextChapter } = useChapterStore();
 	const { data: allChaptersData } = useFetchAllChapters();
 
-	const { currentQuestion, showScore, score, isQuizPassedPerfectly, resetQuizState, handleAnswerOptionClick } = useQuiz(
-		data?.allQuizData ?? []
-	);
+	const {
+		currentQuestion,
+		showScore,
+		score,
+		isQuizPassedPerfectly,
+		resetQuizState,
+		handleAnswerOptionClick,
+		handleNextQuestion,
+		isOptionSelected,
+	} = useQuiz(data?.allQuizData ?? []);
 
 	const hasMorePages = () => data && data.contentSections && pageIndex < data.contentSections.length - 1;
 	const isLastPage = () => data && pageIndex === data.contentSections.length - 1;
+
+	const isLastQuestion = data?.allQuizData && currentQuestion === data.allQuizData[pageIndex]?.length - 1;
 
 	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
 
@@ -69,6 +78,8 @@ export default function ChaptersPage() {
 		);
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
+	const disableNextButton = isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly;
+	
 	return (
 		<motion.div
 			initial="initial"
@@ -83,11 +94,11 @@ export default function ChaptersPage() {
 					<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
 				</div>
 				<motion.div
-					key={pageIndex} // key is important for framer-motion to detect changes
-					initial={{ opacity: 0, x: 50 }} // start from the right
-					animate={{ opacity: 1, x: 0 }} // animate to being fully visible and centered
-					exit={{ opacity: 0, x: -50 }} // exit towards the left
-					transition={{ duration: 0.5 }} // control animation timing
+					key={pageIndex}
+					initial={{ opacity: 0, x: 50 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, x: -50 }}
+					transition={{ duration: 0.5 }}
 				>
 					<ContentSection
 						contentHtml={data?.contentSections[pageIndex] ?? ""}
@@ -98,8 +109,11 @@ export default function ChaptersPage() {
 						questionNumber={currentQuestion + 1}
 						questionText={data?.allQuizData[pageIndex]?.[currentQuestion]?.questionText}
 						options={data?.allQuizData[pageIndex]?.[currentQuestion]?.answerOptions || []}
-						onOptionClick={(isCorrect: boolean) => handleAnswerOptionClick(isCorrect, data?.allQuizData, pageIndex)}
+						onOptionClick={(isCorrect: boolean) => handleAnswerOptionClick(isCorrect)}
 						onRetakeQuiz={() => resetQuiz(resetQuizState)}
+						onNextQuestion={() => handleNextQuestion(data?.allQuizData, pageIndex)}
+						isOptionSelected={isOptionSelected}
+						isLastQuestion={isLastQuestion}
 					/>
 				</motion.div>
 				<NavigationButtonsBar
@@ -107,7 +121,7 @@ export default function ChaptersPage() {
 					onPrev={prevPage}
 					hasNext={!!(data?.contentSections && pageIndex < data.contentSections.length - 1)}
 					hasPrev={pageIndex > 0}
-					disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
+					disableNext={disableNextButton} // Disable next button if not all questions are correct
 					currentPageIndex={currentPageIndex}
 					contentLength={contentLength}
 				/>
