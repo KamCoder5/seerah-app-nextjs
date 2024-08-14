@@ -24,7 +24,7 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 		if (data.length === 0) {
 			throw new Error("No content found for the provided slug.");
 		}
-		console.log(data, "data");
+
 		const renderedContent = data[0].content.rendered;
 		const contentSections = renderedContent.split("<!--nextpage-->");
 		const subtitle = data[0].acf.subtitle || data[0].title.rendered;
