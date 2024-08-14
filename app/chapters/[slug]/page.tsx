@@ -79,7 +79,7 @@ export default function ChaptersPage() {
 	if (error) return <p>Error fetching content: {error.message}</p>;
 
 	const disableNextButton = isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly;
-	
+
 	return (
 		<motion.div
 			initial="initial"
