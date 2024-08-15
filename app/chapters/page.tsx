@@ -41,7 +41,7 @@ const ChaptersRoot: React.FC = () => {
 			transition={pageTransition}
 		>
 			<main className="relative min-h-screen flex flex-col justify-between">
-				<div className="flex flex-col items-center flex-grow">
+				<div className="flex flex-col items-center flex-grow pt-3 md:pt-6">
 					<ChapterHeader />
 					<ChapterList
 						chapters={data || []}
