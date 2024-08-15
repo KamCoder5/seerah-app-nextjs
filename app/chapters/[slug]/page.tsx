@@ -14,6 +14,7 @@ import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 import useChapterStore from "@/store/useChapterStore";
 import { motion } from "framer-motion";
 import ProgressBar from "@/components/ui/progress-bar/ProgressBar";
+import StickyHeader from "@/components/chapters/StickyHeader";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -84,12 +85,12 @@ export default function ChaptersPage() {
 			transition={pageTransition}
 		>
 			<div className="content mt-4">
-				<div className="sticky top-0 bg-brown-50">
-					<Typography variant="h4">{data?.subtitle}</Typography>
-					<div className="flex justify-evenly items-center mt-2 mb-6">
-						<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
-					</div>
-				</div>
+				<StickyHeader
+					subtitle={data?.subtitle}
+					pageIndex={pageIndex}
+					contentLength={data?.contentSections?.length ?? 0}
+				/>
+
 				<motion.div
 					key={pageIndex}
 					initial={{ opacity: 0, x: 50 }}
