@@ -4,14 +4,13 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { BASE_URL } from "@/constants/appConstants";
 
 interface QuizData {
-	question: string;
-	options: string[];
-	correctAnswer: string;
+	questionText: string;
+	answerOptions: { answerText: string; isCorrect: boolean }[];
 }
 
 interface FetchContentResult {
 	contentSections: string[];
-	allQuizData: any;
+	allQuizData: Record<number, QuizData[]>;
 	subtitle: string;
 }
 
@@ -32,19 +31,31 @@ const fetchContent = async (slug: string): Promise<FetchContentResult> => {
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(renderedContent, "text/html");
 
-		const allQuizData: QuizData[] = [];
-		const quizElements = doc.querySelectorAll<HTMLElement>(".quiz-block");
+		const allQuizData: Record<number, QuizData[]> = {};
+		let currentPageIndex = 0;
 
-		quizElements.forEach((element) => {
-			const jsonString = element.getAttribute("data");
-			if (jsonString) {
-				try {
-					const jsonData: QuizData = JSON.parse(jsonString);
-					allQuizData.push(jsonData);
-				} catch (error) {
-					console.error("Error parsing JSON from quiz block data attribute:", error);
+		contentSections.forEach((section: string, index: any) => {
+			const sectionDoc = parser.parseFromString(section, "text/html");
+			const quizElements = sectionDoc.querySelectorAll<HTMLElement>(".quiz-block");
+
+			quizElements.forEach((element) => {
+				const jsonString = element.getAttribute("data");
+				if (jsonString) {
+					try {
+						const jsonData: QuizData[] = JSON.parse(jsonString);
+						if (Array.isArray(jsonData) && jsonData.length > 0) {
+							if (!allQuizData[currentPageIndex]) {
+								allQuizData[currentPageIndex] = [];
+							}
+							allQuizData[currentPageIndex] = allQuizData[currentPageIndex].concat(jsonData);
+						}
+					} catch (error) {
+						console.error("Error parsing JSON from quiz block data attribute:", error);
+					}
 				}
-			}
+			});
+
+			currentPageIndex++;
 		});
 
 		return { contentSections, allQuizData, subtitle };

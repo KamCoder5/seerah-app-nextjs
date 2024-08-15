@@ -25,19 +25,17 @@ const useQuiz = (initialQuizData: QuizData) => {
 		setIsQuizPassedPerfectly(false);
 	};
 
-	const handleAnswerOptionClick = (isCorrect: boolean, quizData: QuizData, pageIndex: number) => {
+	const handleAnswerOptionClick = (isCorrect: boolean) => {
 		if (isCorrect) {
 			setScore((prevScore) => prevScore + 1);
 		}
 
 		const nextQuestion = currentQuestion + 1;
-		// @ts-ignore
-		if (quizData[pageIndex] && nextQuestion < quizData[pageIndex].length) {
+		if (nextQuestion < initialQuizData.length) {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
-			// @ts-ignore
-			if (score + (isCorrect ? 1 : 0) === quizData[pageIndex].length) {
+			if (score + (isCorrect ? 1 : 0) === initialQuizData.length) {
 				setIsQuizPassedPerfectly(true);
 			}
 		}
