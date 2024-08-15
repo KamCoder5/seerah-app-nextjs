@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const BuySection = () => {
 	return (
 		<section className="py-20 bg-gray-100 lg:py-28">
@@ -18,10 +20,12 @@ const BuySection = () => {
 							<div className="text-xl font-semibold text-blue-800">From $1,599</div>
 						</div>
 					</div>
-					<div className="">
-						<img
+					<div>
+						<Image
 							src="/images/template/bottom-drone.png"
 							alt="Drone"
+							width={500}
+							height={500}
 						/>
 					</div>
 				</div>
