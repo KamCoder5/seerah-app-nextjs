@@ -5,7 +5,6 @@ import { useParams, useRouter } from "next/navigation";
 import ContentSection from "@/components/chapters/ContentSection";
 import NavigationButtonsBar from "@/components/chapters/NavigationButtonsBar";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
-import Typography from "@/components/ui/typography/Typography";
 import useFetchAllChapters from "@/hooks/useFetchAllChapters";
 import useFetchChapter from "@/hooks/useFetchChapter";
 import useQuiz from "@/hooks/useQuiz";
@@ -13,7 +12,6 @@ import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 import useChapterStore from "@/store/useChapterStore";
 import { motion } from "framer-motion";
-import ProgressBar from "@/components/ui/progress-bar/ProgressBar";
 import StickyHeader from "@/components/chapters/StickyHeader";
 
 export default function ChaptersPage() {
