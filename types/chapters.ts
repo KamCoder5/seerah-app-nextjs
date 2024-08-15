@@ -11,3 +11,14 @@ export type Chapter = {
 };
 
 export type Chapters = Chapter[];
+
+export interface QuizData {
+	questionText: string;
+	answerOptions: { answerText: string; isCorrect: boolean }[];
+}
+
+export interface FetchContentResult {
+	contentSections: string[];
+	allQuizData: Record<number, QuizData[]>;
+	subtitle: string;
+}
