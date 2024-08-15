@@ -9,9 +9,12 @@ export async function GET(request: Request, { params }: { params: { slug: string
 		return NextResponse.json({ message: "Missing slug parameter" }, { status: 400 });
 	}
 
-	const API_URL = `${BASE_URL}/wp-json/wp/v2/chapter?slug=${slug}&_fields=title,content,acf,slug,status`;
 	try {
-		const response = await axios.get(API_URL);
+		const apiUrl = new URL("/wp-json/wp/v2/chapter", BASE_URL);
+		apiUrl.searchParams.append("slug", slug);
+		apiUrl.searchParams.append("_fields", "title,content,acf,slug,status");
+
+		const response = await axios.get(apiUrl.toString());
 		const data = response.data;
 
 		if (data.length === 0) {
