@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ContentSection from "@/components/chapters/ContentSection";
 import NavigationButtonsBar from "@/components/chapters/NavigationButtonsBar";
@@ -31,7 +31,9 @@ export default function ChaptersPage() {
 	const hasMorePages = () => data && data.contentSections && pageIndex < data.contentSections.length - 1;
 	const isLastPage = () => data && pageIndex === data.contentSections.length - 1;
 
-	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
+	const proceedToNextPage = () => {
+		setPageIndex(pageIndex + 1);
+	};
 
 	const finishChapter = () => {
 		if (allChaptersData) {
@@ -60,6 +62,10 @@ export default function ChaptersPage() {
 	const currentPageIndex = pageIndex + 1;
 	const contentLength = data?.contentSections?.length ?? 0;
 
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [pageIndex]);
+
 	if (isLoading)
 		return (
 			<LoadingSpinner
@@ -68,8 +74,6 @@ export default function ChaptersPage() {
 			/>
 		);
 	if (error) return <p>Error fetching content: {error.message}</p>;
-
-	const disableNextButton = isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly;
 
 	return (
 		<motion.div
@@ -80,9 +84,11 @@ export default function ChaptersPage() {
 			transition={pageTransition}
 		>
 			<div className="content mt-4">
-				<Typography variant="h4">{data?.subtitle}</Typography>
-				<div className="flex justify-evenly items-center mt-2 mb-6">
-					<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
+				<div className="sticky top-0 bg-brown-50">
+					<Typography variant="h4">{data?.subtitle}</Typography>
+					<div className="flex justify-evenly items-center mt-2 mb-6">
+						<ProgressBar percentage={(pageIndex / (data?.contentSections?.length ?? 1)) * 100} />
+					</div>
 				</div>
 				<motion.div
 					key={pageIndex}

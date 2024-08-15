@@ -19,7 +19,7 @@ const config: Config = {
 			colors: {
 				brown: {
 					DEFAULT: "#814F0F",
-					50: "#ECAD5C",
+					50: "#f1ede8",
 					100: "#EAA349",
 					200: "#E69125",
 					300: "#CA7C18",

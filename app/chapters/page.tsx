@@ -49,7 +49,7 @@ const ChaptersRoot: React.FC = () => {
 						onChapterClick={handleChapterClick}
 					/>
 				</div>
-				<div className="fixed bottom-0 left-0 right-0 py-3 bg-[#f1ede8] shadow-xl z-50">
+				<div className="fixed bottom-0 left-0 right-0 py-3 bg-brown-50 shadow-xl z-50">
 					<div className="container max-w-3xl m-auto">
 						<ContinueReadingButton
 							slug={currentChapter?.slug || "loading"}
