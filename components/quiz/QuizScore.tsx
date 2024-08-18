@@ -16,19 +16,21 @@ const QuizScore: React.FC<QuizScoreProps> = ({ score, totalQuestions, onRetakeQu
 			animate={{ scale: 1, opacity: 1 }}
 			transition={{ duration: 0.5 }}
 		>
-			<p className="text-lg font-bold">
+			<p className="text- font-bold">
 				You scored {score} out of {totalQuestions}
 			</p>
 			{score < totalQuestions && (
-				<motion.button
-					className="btn btn-primary mt-2"
-					onClick={onRetakeQuiz}
-					whileHover={{ scale: 1.1 }}
-					whileTap={{ scale: 0.9 }}
-					transition={{ type: "spring", stiffness: 300 }}
-				>
-					Retake Quiz
-				</motion.button>
+				<div>
+					<p className="text-m font-normal mt-2">Retake the quiz to navigate to the next section</p>
+					<motion.button
+						className="text-sm font-normal text-white flex justify-center items-center rounded-lg mt-2 min-h-10 min-w-5 bg-blue-500 w-full"
+						onClick={onRetakeQuiz}
+						whileTap={{ scale: 0.9 }}
+						transition={{ type: "spring", stiffness: 300 }}
+					>
+						Retake Quiz
+					</motion.button>
+				</div>
 			)}
 		</motion.div>
 	);

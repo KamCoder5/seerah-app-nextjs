@@ -27,7 +27,7 @@ const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick }) => 
 			{options.map((option, index) => (
 				<motion.button
 					key={index}
-					className="mt-2 p-3 w-full text-left bg-gray-100 hover:bg-gray-200 rounded-md transition"
+					className="mt-2 p-3 w-full text-center bg-gray-100 hover:bg-gray-200 rounded-md transition"
 					onClick={() => onOptionClick(option.isCorrect)}
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
