@@ -39,11 +39,22 @@ const ContentSection: React.FC<ContentSectionProps> = ({
 			{isQuiz && (
 				<QuizContainer>
 					{showScore ? (
-						<QuizScore
-							score={score}
-							totalQuestions={totalQuestions}
-							onRetakeQuiz={onRetakeQuiz}
-						/>
+						<>
+							<QuizQuestion
+								questionNumber={questionNumber}
+								totalQuestions={totalQuestions}
+								questionText={questionText}
+							/>
+							<QuizOptions
+								options={options}
+								onOptionClick={onOptionClick}
+							/>
+							<QuizScore
+								score={score}
+								totalQuestions={totalQuestions}
+								onRetakeQuiz={onRetakeQuiz}
+							/>
+						</>
 					) : (
 						<>
 							<QuizQuestion
