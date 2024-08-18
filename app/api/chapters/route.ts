@@ -3,11 +3,15 @@ import axios from "axios";
 import { BASE_URL } from "@/constants/appConstants";
 
 export async function GET() {
-	const API_URL = `${BASE_URL}/wp-json/wp/v2/chapter?_fields=id,title,slug,subtitle,acf&orderby=date&order=asc`;
-
 	try {
-		const response = await axios.get(API_URL);
+		const apiUrl = new URL("/wp-json/wp/v2/chapter", BASE_URL);
+		apiUrl.searchParams.append("_fields", "id,title,slug,subtitle,acf");
+		apiUrl.searchParams.append("orderby", "date");
+		apiUrl.searchParams.append("order", "asc");
+
+		const response = await axios.get(apiUrl.toString());
 		const chapters = response.data;
+
 		return NextResponse.json(chapters);
 	} catch (error) {
 		console.error("Failed to fetch chapters:", error);
