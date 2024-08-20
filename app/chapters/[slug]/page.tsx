@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Add this at the top
 
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -27,9 +27,17 @@ export default function ChaptersPage() {
 	const { data: allChaptersData } = useFetchAllChapters();
 	const { unlockNextChapter } = useChapterStore();
 
-	const { currentQuestion, showScore, score, isQuizPassedPerfectly, resetQuizState, handleAnswerOptionClick } = useQuiz(
-		data?.allQuizData?.[pageIndex] ?? []
-	);
+	const {
+		currentQuestion,
+		showScore,
+		score,
+		isQuizPassedPerfectly,
+		resetQuizState,
+		handleAnswerOptionClick,
+		handleNextQuestion,
+		selectedOptionIndex,
+		isAnswered,
+	} = useQuiz(data?.allQuizData?.[pageIndex] ?? []);
 
 	const hasMorePages = () => data && pageIndex < (data.contentSections?.length ?? 0) - 1;
 	const isLastPage = () => data && pageIndex === (data.contentSections?.length ?? 0) - 1;
@@ -113,6 +121,10 @@ export default function ChaptersPage() {
 						options={data?.allQuizData?.[pageIndex]?.[currentQuestion]?.answerOptions || []}
 						onOptionClick={handleAnswerOptionClick}
 						onRetakeQuiz={() => resetQuiz(resetQuizState)}
+						onNextQuestion={handleNextQuestion}
+						selectedOptionIndex={selectedOptionIndex}
+						isAnswered={isAnswered}
+						isLastQuestion={currentQuestion + 1 >= (data?.allQuizData?.[pageIndex]?.length ?? 0)}
 					/>
 				</motion.div>
 
