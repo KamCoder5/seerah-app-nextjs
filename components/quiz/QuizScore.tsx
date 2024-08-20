@@ -33,11 +33,11 @@ const QuizScore: React.FC<QuizScoreProps> = ({ score, totalQuestions, onRetakeQu
 			);
 		}
 
-		// End of Chapter Questions All Correct 
+		// End of Chapter Questions All Correct
 		return (
 			<FeedbackMessage
 				mainText={`Perfect! You scored ${score}/${totalQuestions}`}
-				subText="Next chapter unlocked - woo!"
+				subText="Next chapter unlocked"
 			/>
 		);
 	};
