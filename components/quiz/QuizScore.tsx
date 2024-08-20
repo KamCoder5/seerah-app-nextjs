@@ -27,13 +27,19 @@ const QuizScore: React.FC<QuizScoreProps> = ({ score, totalQuestions, onRetakeQu
 		if (score < totalQuestions) {
 			return (
 				<FeedbackMessage
-					mainText="Oops!"
+					mainText={`You scored ${score}/${totalQuestions}`}
 					subText="Try again - retake the quiz to advance to the next section"
 				/>
 			);
 		}
 
-		return null;
+		// End of Chapter Questions All Correct 
+		return (
+			<FeedbackMessage
+				mainText={`Perfect! You scored ${score}/${totalQuestions}`}
+				subText="Next chapter unlocked - woo!"
+			/>
+		);
 	};
 
 	return (
