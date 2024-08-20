@@ -7,21 +7,21 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 const lora = Lora({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "The Seerah App",
-	description: "The Seerah App",
+  title: "The Seerah App",
+  description: "The Seerah App",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en">
-			<Providers>
-				<body className={cn(lora.className)}>{children}</body>
-			</Providers>
-			<GoogleAnalytics gaId="G-8EF00F7XR9" />
-		</html>
-	);
+  return (
+    <html lang="en">
+      <Providers>
+        <body className={cn(lora.className)}>{children}</body>
+      </Providers>
+      <GoogleAnalytics gaId="G-8EF00F7XR9" />
+    </html>
+  );
 }

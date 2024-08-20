@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 :root {
-	--background: #f1ede8;
-	--primary-text: black;
+  --background: #f1ede8;
+  --primary-text: black;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--background: #f1ede8;
-	}
+  :root {
+    --background: #f1ede8;
+  }
 }
 
 body {
-	color: var(--primary-text);
-	background: var(--background);
+  color: var(--primary-text);
+  background: var(--background);
 }
 
 @layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 h1,
@@ -30,58 +30,58 @@ h3,
 h4,
 h5,
 h6 {
-	@apply text-brown-500;
+  @apply text-brown-500;
 }
 
 /* Custom styles for WordPress blocks */
 .wp-block-quote {
-	@apply border-l-4 border-gray-300 pl-4 text-gray-700;
+  @apply border-l-4 border-gray-300 pl-4 text-gray-700;
 }
 
 .wp-block-quote .quote-text {
-	@apply italic text-lg;
+  @apply italic text-lg;
 }
 
 .wp-block-quote .quote-source {
-	@apply text-sm text-gray-500;
+  @apply text-sm text-gray-500;
 }
 
 .wp-block-image img {
-	@apply max-w-full h-auto rounded-lg shadow-md;
+  @apply max-w-full h-auto rounded-lg shadow-md;
 }
 
 .content-text {
-	@apply mb-4 leading-relaxed;
+  @apply mb-4 leading-relaxed;
 }
 
 .quiz-block {
-	@apply hidden invisible;
+  @apply hidden invisible;
 }
 
 .next-page-divider {
-	@apply my-8 border-t border-gray-200;
+  @apply my-8 border-t border-gray-200;
 }
 
 .title {
-	@apply text-3xl font-bold mb-4;
+  @apply text-3xl font-bold mb-4;
 }
 
 .subtitle {
-	@apply text-xl font-semibold mb-2;
+  @apply text-xl font-semibold mb-2;
 }
 
 .image-caption {
-	@apply text-sm text-gray-500 mt-2;
+  @apply text-sm text-gray-500 mt-2;
 }
 
 .wp-content p:not(blockquote p) {
-	@apply mb-3;
+  @apply mb-3;
 }
 
 .wp-content .wp-block-cover {
-	@apply mb-3;
+  @apply mb-3;
 }
 
 .wp-block-quote {
-	@apply mb-3;
+  @apply mb-3;
 }

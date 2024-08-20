@@ -4,11 +4,11 @@ import { TWENTY_FOUR_HOURS } from "@/constants/pageConstants";
 import { fetchAllChapters } from "@/app/queries/fetchAllChapters";
 
 const useChapters = (): UseQueryResult<Chapter[], Error> => {
-	return useQuery<Chapter[], Error>({
-		queryKey: ["chapters"],
-		queryFn: fetchAllChapters,
-		staleTime: TWENTY_FOUR_HOURS,
-	});
+  return useQuery<Chapter[], Error>({
+    queryKey: ["chapters"],
+    queryFn: fetchAllChapters,
+    staleTime: TWENTY_FOUR_HOURS,
+  });
 };
 
 export default useChapters;

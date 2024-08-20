@@ -5,13 +5,13 @@ import Footer from "@/components/ui/footer/Footer";
 import Hero from "@/components/ui/hero/Hero";
 
 export default function Home() {
-	return (
-		<>
-			<Hero />
-			<FeaturesBlocks />
-			<Features />
-			<BuySection />
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <Hero />
+      <FeaturesBlocks />
+      <Features />
+      <BuySection />
+      <Footer />
+    </>
+  );
 }
