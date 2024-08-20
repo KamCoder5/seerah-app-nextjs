@@ -17,7 +17,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({ questionNumber, totalQuesti
 			transition={{ duration: 0.5 }}
 		>
 			{totalQuestions > 1 && (
-				<p className="text-sm font-semibold">
+				<p className="text-sm font-semibold mb-2">
 					Question {questionNumber} / {totalQuestions}
 				</p>
 			)}

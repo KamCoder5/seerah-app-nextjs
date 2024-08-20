@@ -23,7 +23,7 @@ const QuizScore: React.FC<QuizScoreProps> = ({ score, totalQuestions, onRetakeQu
 				<div>
 					<p className="text-m font-normal mt-2">Retake the quiz to navigate to the next section</p>
 					<motion.button
-						className="text-sm font-normal text-white flex justify-center items-center rounded-lg mt-2 min-h-10 min-w-5 bg-blue-500 w-full"
+						className="mt-4 p-3 w-full text-center bg-blue-500 text-white rounded-md transition"
 						onClick={onRetakeQuiz}
 						whileTap={{ scale: 0.9 }}
 						transition={{ type: "spring", stiffness: 300 }}
