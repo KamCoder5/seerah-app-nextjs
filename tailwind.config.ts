@@ -45,6 +45,12 @@ const config: Config = {
 					900: "#0C1B21",
 					950: "#091318",
 				},
+				mist: {
+					DEFAULT: "#D8DBC8",
+				},
+				vanilla: {
+					DEFAULT: "#CFBEA7",
+				},
 			},
 		},
 	},

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface QuizOptionsProps {
 	options: { answerText: string; isCorrect: boolean }[];
@@ -11,14 +12,14 @@ interface QuizOptionsProps {
 const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick, selectedOptionIndex, isAnswered }) => {
 	const getButtonStyleClass = (index: number, isCorrect: boolean): string => {
 		if (!isAnswered) {
-			return "bg-[#D8DBC8] border border-[#CFBEA7] text-black hover:bg-gray-200";
+			return "bg-mist border border-vanilla text-black hover:bg-gray-200";
 		}
 
 		if (index === selectedOptionIndex) {
 			return isCorrect ? "bg-green-500 text-white" : "bg-red-500 text-white";
 		}
 
-		return isCorrect ? "bg-green-500 text-white" : " border border-[#CFBEA7] bg-[#D8DBC8] text-black";
+		return isCorrect ? "bg-green-500 text-white" : " border border-vanilla bg-mist text-black";
 	};
 
 	return (
@@ -40,7 +41,10 @@ const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick, selec
 			{options.map((option, index) => (
 				<motion.button
 					key={index}
-					className={`mt-2 p-3 w-full text-center rounded-md transition ${getButtonStyleClass(index, option.isCorrect)}`}
+					className={cn(
+						"mt-2 p-3 w-full text-center text-base md:text-lg rounded-md transition",
+						getButtonStyleClass(index, option.isCorrect)
+					)}
 					onClick={() => onOptionClick(index)}
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}

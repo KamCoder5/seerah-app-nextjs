@@ -9,7 +9,7 @@ interface QuizContainerProps {
 const QuizContainer: React.FC<QuizContainerProps> = ({ children }) => {
 	return (
 		<motion.div
-			className="shadow-md rounded-lg p-6 my-4"
+			className="rounded-lg my-4"
 			initial={{ x: -100, opacity: 0 }}
 			animate={{ x: 0, opacity: 1 }}
 			exit={{ x: 100, opacity: 0 }}

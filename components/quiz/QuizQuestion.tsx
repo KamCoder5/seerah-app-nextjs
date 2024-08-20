@@ -22,7 +22,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({ questionNumber, totalQuesti
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 			>
-				<p className="text-lg text-center">{questionText}?</p>
+				<p className="text-base md:text-lg text-center">{questionText}</p>
 			</motion.div>
 		</div>
 	);
