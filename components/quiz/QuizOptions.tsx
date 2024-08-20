@@ -1,13 +1,26 @@
-// components/QuizOptions.tsx
 import React from "react";
 import { motion } from "framer-motion";
 
 interface QuizOptionsProps {
 	options: { answerText: string; isCorrect: boolean }[];
-	onOptionClick: (isCorrect: boolean) => void;
+	onOptionClick: (optionIndex: number) => void;
+	selectedOptionIndex: number | null;
+	isAnswered: boolean;
 }
 
-const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick }) => {
+const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick, selectedOptionIndex, isAnswered }) => {
+	const getButtonStyleClass = (index: number, isCorrect: boolean): string => {
+		if (!isAnswered) {
+			return "bg-[#D8DBC8] border border-[#CFBEA7] text-black hover:bg-gray-200";
+		}
+
+		if (index === selectedOptionIndex) {
+			return isCorrect ? "bg-green-500 text-white" : "bg-red-500 text-white";
+		}
+
+		return isCorrect ? "bg-green-500 text-white" : " border border-[#CFBEA7] bg-[#D8DBC8] text-black";
+	};
+
 	return (
 		<motion.div
 			className="mt-4"
@@ -27,10 +40,11 @@ const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick }) => 
 			{options.map((option, index) => (
 				<motion.button
 					key={index}
-					className="mt-2 p-3 w-full text-left bg-gray-100 hover:bg-gray-200 rounded-md transition"
-					onClick={() => onOptionClick(option.isCorrect)}
+					className={`mt-2 p-3 w-full text-center rounded-md transition ${getButtonStyleClass(index, option.isCorrect)}`}
+					onClick={() => onOptionClick(index)}
 					whileHover={{ scale: 1.05 }}
 					whileTap={{ scale: 0.95 }}
+					disabled={isAnswered}
 					variants={{
 						hidden: { opacity: 0, y: 20 },
 						visible: { opacity: 1, y: 0 },
