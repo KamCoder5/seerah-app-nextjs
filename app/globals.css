@@ -78,10 +78,8 @@ h6 {
 	@apply mb-3;
 }
 
+.wp-content .wp-block-quote,
+.wp-content .wp-block-image,
 .wp-content .wp-block-cover {
-	@apply mb-3;
-}
-
-.wp-block-quote {
-	@apply mb-3;
+	@apply mb-3 md:mb-6;
 }
