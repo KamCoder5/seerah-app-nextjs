@@ -1,6 +1,6 @@
 import React from "react";
-import { cn } from "@/lib/utils"; // Ensure this path points correctly to your utility file
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Import icons from react-icons
+import { cn } from "@/lib/utils";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 interface NavigationButtonsProps {
 	onNext: () => void;
@@ -10,6 +10,7 @@ interface NavigationButtonsProps {
 	disableNext: boolean;
 	currentPageIndex: number;
 	contentLength: number;
+	isLastPage: boolean;
 }
 
 const NavigationButtonsBar: React.FC<NavigationButtonsProps> = ({
@@ -20,11 +21,12 @@ const NavigationButtonsBar: React.FC<NavigationButtonsProps> = ({
 	disableNext,
 	currentPageIndex,
 	contentLength,
+	isLastPage,
 }) => {
 	return (
 		<div className="flex justify-between items-center mt-6 sticky bottom-0 w-full bg-brown-50 border-t py-2">
 			<div className="flex-1 flex items-center">
-				{hasPrev ? (
+				{hasPrev && !isLastPage ? (
 					<button
 						className={cn("btn btn-secondary flex items-center", !hasPrev && "opacity-50 cursor-not-allowed")}
 						onClick={onPrev}

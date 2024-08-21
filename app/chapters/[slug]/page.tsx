@@ -40,7 +40,7 @@ export default function ChaptersPage() {
 	} = useQuiz(data?.allQuizData?.[pageIndex] ?? []);
 
 	const hasMorePages = () => data && pageIndex < (data.contentSections?.length ?? 0) - 1;
-	const isLastPage = () => data && pageIndex === (data.contentSections?.length ?? 0) - 1;
+	const isLastPage = (): boolean => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 1);
 
 	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
 
@@ -129,6 +129,7 @@ export default function ChaptersPage() {
 				</motion.div>
 
 				<NavigationButtonsBar
+					isLastPage={isLastPage()}
 					onNext={nextPage}
 					onPrev={prevPage}
 					hasNext={!!hasMorePages()}
