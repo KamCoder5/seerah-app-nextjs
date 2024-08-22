@@ -11,10 +11,9 @@ const Hero: React.FC<Props> = (props) => {
 			<div className="container px-5 mx-auto text-center">
 				<div className="mb-16">
 					<div className="mb-12 space-y-4">
-						<h4 className="text-2xl font-semibold sm:text-3xl">Phantom 4PRO V2.0</h4>
-						<h1 className="text-5xl font-bold sm:text-7xl">Visionary intelligence</h1>
+						<h1 className="text-5xl font-bold sm:text-7xl">The Seerah App</h1>
 						<p className="mx-auto text-lg text-gray-600 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl">
-							Single Product eCommerce landing page template
+							Helping everyday Muslims learn the life of the Prophet Muhammad (PBUH)
 						</p>
 					</div>
 
