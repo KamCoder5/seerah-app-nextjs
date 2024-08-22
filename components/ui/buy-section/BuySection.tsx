@@ -7,8 +7,8 @@ const BuySection = () => {
 				<div className="grid items-center gap-10 text-center lg:grid-cols-2 lg:text-left">
 					<div className="space-y-8">
 						<div className="space-y-4">
-							<h2 className="text-3xl font-bold sm:text-5xl">Phantom 4PRO V2.0</h2>
-							<p className="text-xl text-gray-600">Visionary intelligence. Elevated imagination.</p>
+							<h2 className="text-3xl font-bold sm:text-5xl">Try it out!</h2>
+							<p className="text-xl text-gray-600">Follow our journey</p>
 						</div>
 						<div className="flex items-center justify-center space-x-4 lg:justify-start">
 							<a
