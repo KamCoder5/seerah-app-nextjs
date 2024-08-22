@@ -7,24 +7,37 @@ type Props = {};
 
 const Hero: React.FC<Props> = (props) => {
 	return (
-		<section className="py-20 bg-gray-200 lg:py-28">
+		<section className="py-20 bg-white lg:py-28">
 			<div className="container px-5 mx-auto text-center">
 				<div className="mb-16">
 					<div className="mb-12 space-y-4">
+						<h1 className="text-xl font-bold sm:text-2xl">Building...</h1>
 						<h1 className="text-5xl font-bold sm:text-7xl">The Seerah App</h1>
-						<p className="mx-auto text-lg text-gray-600 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl">
-							Helping everyday Muslims learn the life of the Prophet Muhammad (PBUH)
+						<p className="mx-auto text-lg text-brown-500 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl">
+							Helping everyday Muslims learn the life of the Prophet Muhammad ﷺ
+						</p>
+						<Image
+							src="/images/template/logo.png"
+							alt="Drone"
+							width={200}
+							height={200}
+							className="mx-auto w-full max-w-xs max-h-xs"
+						/>
+
+						<p className="mx-auto text-lg text-brown-500 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl">
+							<p>Learn . Retain . Progress . Transform .</p>
+							Follow our journey!
 						</p>
 					</div>
 
-					<Link
+					{/* <Link
 						href="/chapters"
 						className="inline-block px-12 py-4 text-lg font-semibold text-white transition duration-300 ease-in-out transform bg-blue-800 rounded-full shadow hover:bg-blue-900 hover:shadow-lg hover:scale-110"
 					>
 						Start reading!
-					</Link>
+					</Link> */}
 				</div>
-				<div className="mx-auto xl:max-w-screen-lg mb-28">
+				{/* <div className="mx-auto xl:max-w-screen-lg mb-28">
 					<Image
 						src="/images/template/hero-drone.png"
 						alt="Drone"
@@ -32,8 +45,8 @@ const Hero: React.FC<Props> = (props) => {
 						height={500}
 						layout="responsive"
 					/>
-				</div>
-				<div className="space-y-12">
+				</div> */}
+				{/* <div className="space-y-12">
 					<p className="mx-auto text-xl font-semibold text-gray-600 lg:w-3/5 sm:text-3xl">
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet obcaecati perferendis voluptas quasi
 						quidem natus error voluptatibus.
@@ -67,10 +80,11 @@ const Hero: React.FC<Props> = (props) => {
 							</span>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);
 };
 
 export default Hero;
+("");

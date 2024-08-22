@@ -10,7 +10,7 @@ const NavBar = () => {
 						href="/chapters"
 						className="text-m font-semibold text-blue-800 hover:text-blue-900 transition duration-300 ease-in-out"
 					>
-						Start learning!
+						Start learning
 					</Link>
 				</div>
 			</div>
