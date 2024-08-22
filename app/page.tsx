@@ -4,6 +4,7 @@ import IntentionsBlock from "@/components/ui/Intentions/Intentions";
 import Footer from "@/components/ui/footer/Footer";
 import Hero from "@/components/ui/hero/Hero";
 import NavBar from "@/components/ui/navBar/NavBar";
+import Specifications from "@/components/ui/specifications/Specifications";
 
 export default function Home() {
 	return (
@@ -12,6 +13,7 @@ export default function Home() {
 			<Hero />
 			<IntentionsBlock />
 			<Features />
+			<Specifications />
 			<BuySection />
 			<Footer />
 		</>

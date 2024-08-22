@@ -1,23 +1,23 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { FaCamera, FaBolt, FaLightbulb, FaMoon, FaImage, FaSlidersH } from "react-icons/fa";
 
 const features = [
 	{
-		title: "Chapters List",
-		description: "Guided learning of major life events from before he was born, why do we need Islam",
+		title: "Guided Learning Through Structured Content",
+		description:
+			"Seamless learning journey with chapters thoughtfully organised to guide you through key historical periods. Starting with the pre-Islamic era in Arabia, the content flows through the life of the Prophet, the revelation of the Quran, and the transformative events of pre- and post-Hijrah, leading up to the Prophet’s ﷺ farewell.",
 		imgUrl: "/images/template/all-chapters.png",
 	},
 	{
-		title: "A Guided Journey",
+		title: "Concise and Accessible Chapters",
 		description:
-			"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, doloribus. Ipsum saepe dicta excepturi vero sint dolorum quo ullam qui possimus inventore nesciunt incidunt, cum vel modi nostrum tempore. Commodi consectetur reiciendis veniam possimus corporis, distinctio officiis eos iste totam fuga, eum magnam adipisci accusantium.",
+			"Each chapter is crafted to be brief yet impactful, offering bite-sized lessons that are easy to understand and absorb. This approach ensures that learning remains engaging and manageable.",
 		imgUrl: "/images/template/chapter.png",
 	},
 	{
-		title: "Intelligent Flight Battery",
+		title: "Enhanced Retention with Embedded Quizzes",
 		description:
-			"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, doloribus. Ipsum saepe dicta excepturi vero sint dolorum quo ullam qui possimus inventore nesciunt incidunt, cum vel modi nostrum tempore. Commodi consectetur reiciendis veniam possimus corporis, distinctio officiis eos iste totam fuga, eum magnam adipisci accusantium.",
+			"Strengthen your knowledge with strategically placed quizzes throughout each chapter, designed to boost memory retention and active recall. A comprehensive quiz at the end of each chapter consolidates your learning, encouraging a measured and thoughtful approach to mastering the material.",
 		imgUrl: "/images/template/quiz.png",
 	},
 ];

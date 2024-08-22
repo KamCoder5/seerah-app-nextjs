@@ -4,20 +4,21 @@ import { FaCamera, FaBolt, FaLightbulb, FaMoon, FaImage, FaSlidersH } from "reac
 
 const intentions = [
 	{
-		title: "Bridge The gap",
+		title: "Bridge the Gap",
 		description:
-			"My intention is to help bridge the gap between us and the Prophet ﷺ to learn about him, no matter who or where we are",
+			"My goal is to bridge the gap between us and the Prophet ﷺ, enabling everyone to learn more about his life and teachings.",
 		icon: FaCamera,
 	},
 	{
-		title: "Build With The Ummah",
+		title: "Build with the Ummah",
 		description:
-			"I'm building this app in public so I can get your thoughts, suggestions and ideas and build with you ",
+			"This app is being developed transparently, inviting your thoughts, suggestions, and ideas, so we can create it together.",
 		icon: FaBolt,
 	},
 	{
-		title: "Build In Stages",
-		description: "I'm going to be building a feature at a time, releasing it and getting your throughtseeeee",
+		title: "Build Step by Step",
+		description:
+			"I will be developing and releasing features incrementally,    your feedback at each stage to ensure it meets our shared vision and needs.",
 		icon: FaBolt,
 	},
 ];
