@@ -83,3 +83,6 @@ h6 {
 .wp-content .wp-block-cover {
 	@apply mb-3 md:mb-6;
 }
+
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";

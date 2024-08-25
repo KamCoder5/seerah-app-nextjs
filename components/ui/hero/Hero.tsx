@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { FaCamera, FaMicrophoneSlash, FaImage } from "react-icons/fa"; // Import the icons from react-icons
+import { FaCamera, FaMicrophoneSlash, FaImage, FaArrowDown } from "react-icons/fa"; // Import the icons from react-icons
 
 type Props = {};
 
 const Hero: React.FC<Props> = (props) => {
 	return (
-		<section className="py-20 bg-white lg:py-28">
+		<section className="py-20 lg:py-28">
 			<div className="container px-5 mx-auto text-center">
 				<div className="mb-16">
 					<div className="mb-12 space-y-4">
@@ -24,10 +24,7 @@ const Hero: React.FC<Props> = (props) => {
 							className="mx-auto w-full max-w-xs max-h-xs"
 						/>
 
-						<p className="mx-auto text-lg text-brown-500 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl">
-							<p>Learn . Retain . Progress . Transform .</p>
-							Follow our journey!
-						</p>
+						<p className="mx-auto text-lg text-brown-500 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl"> build journey!</p>
 					</div>
 
 					{/* <Link
@@ -36,6 +33,9 @@ const Hero: React.FC<Props> = (props) => {
 					>
 						Start reading!
 					</Link> */}
+				</div>
+				<div className="flex justify-center">
+					<FaArrowDown className="animate-bounce text-3xl text-blue-800 mt-10" />
 				</div>
 				{/* <div className="mx-auto xl:max-w-screen-lg mb-28">
 					<Image
@@ -87,4 +87,3 @@ const Hero: React.FC<Props> = (props) => {
 };
 
 export default Hero;
-("");

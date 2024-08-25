@@ -5,15 +5,17 @@ import Footer from "@/components/ui/footer/Footer";
 import Hero from "@/components/ui/hero/Hero";
 import NavBar from "@/components/ui/navBar/NavBar";
 import Specifications from "@/components/ui/specifications/Specifications";
+import Hadith from "@/components/ui/hadith/Hadith";
 
 export default function Home() {
 	return (
 		<>
 			<NavBar />
 			<Hero />
-			<IntentionsBlock />
-			<Features />
+			<Hadith />
 			<Specifications />
+			<Features />
+			<IntentionsBlock />
 			<BuySection />
 			<Footer />
 		</>

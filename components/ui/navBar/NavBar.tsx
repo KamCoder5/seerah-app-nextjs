@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NavBar = () => {
 	return (
-		<nav className="bg-white shadow-sm sticky top-0 z-50">
+		<nav className=" bg-[#f1ede8] shadow-sm sticky top-0 z-50">
 			<div className="container  px-4 py-4 flex justify-between items-center">
 				<div className="text-xl font-semibold">The Seerah App</div>
 				<div className="ml-auto">

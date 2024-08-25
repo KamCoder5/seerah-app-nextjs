@@ -24,7 +24,7 @@ const features = [
 
 const Features = () => {
 	return (
-		<section className="py-10 lg:py-14">
+		<section className="py-10 lg:py-14 bg-white">
 			<div className="container px-5 mx-auto">
 				<h2 className="text-4xl font-bold sm:text-5xl text-center mb-10">Features</h2>
 				<p className="text-lg text-gray-600 text-center mb-10">
@@ -41,13 +41,13 @@ const Features = () => {
 								<h3 className="text-2xl font-semibold sm:text-4xl">{feature.title}</h3>
 								<p className="text-lg text-gray-600">{feature.description}</p>
 							</div>
-							<div className={cn(i % 2 === 0 ? "lg:order-last" : "", "bg-gray-100 p-20 order-first")}>
+							<div className={cn(i % 2 === 0 ? "lg:order-last" : "", " p-20 order-first")}>
 								<Image
 									src={feature.imgUrl}
 									alt={feature.title}
-									width={500}
-									height={500}
-									className="w-full h-auto"
+									width={400}
+									height={400}
+									className="w-300 h-300"
 								/>
 							</div>
 						</div>
