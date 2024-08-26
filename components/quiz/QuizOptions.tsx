@@ -11,15 +11,16 @@ interface QuizOptionsProps {
 
 const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick, selectedOptionIndex, isAnswered }) => {
 	const getButtonStyleClass = (index: number, isCorrect: boolean): string => {
+		const unselectedOptionStyle = "bg-mist border border-vanilla text-black";
 		if (!isAnswered) {
-			return "bg-mist border border-vanilla text-black hover:bg-gray-200";
+			return `${unselectedOptionStyle} hover:bg-gray-200`;
 		}
 
 		if (index === selectedOptionIndex) {
 			return isCorrect ? "bg-green-500 text-white" : "bg-red-500 text-white";
 		}
 
-		return isCorrect ? "bg-green-500 text-white" : " border border-vanilla bg-mist text-black";
+		return unselectedOptionStyle;
 	};
 
 	return (
