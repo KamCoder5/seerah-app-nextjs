@@ -9,7 +9,10 @@ interface StickyHeaderProps {
 }
 
 const StickyHeader: React.FC<StickyHeaderProps> = ({ subtitle, pageIndex, contentLength }) => {
-	const percentage = (pageIndex / (contentLength || 1)) * 100;
+	// took away 2 pages from contentLength to exclude startFinalQuiz and endFinalQuiz pages
+	const adjustedContentLength = contentLength - 2;
+	//  clamp it between 0 and 100, stop it from overflowing
+	const percentage = Math.min((pageIndex / (adjustedContentLength || 1)) * 100, 100);
 
 	return (
 		<div className="sticky top-0 bg-brown-50">
