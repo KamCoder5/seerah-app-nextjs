@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { BASE_URL } from "@/constants/appConstants";
 
 export async function GET() {
 	try {
-		const apiUrl = new URL("/wp-json/wp/v2/chapter", BASE_URL);
+		const apiUrl = new URL("/wp-json/wp/v2/chapter", process.env.API_URL);
 		apiUrl.searchParams.append("_fields", "id,title,slug,subtitle,acf");
 		apiUrl.searchParams.append("orderby", "date");
 		apiUrl.searchParams.append("order", "asc");
