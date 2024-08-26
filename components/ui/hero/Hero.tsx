@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { FaCamera, FaMicrophoneSlash, FaImage } from "react-icons/fa"; // Import the icons from react-icons
-
 type Props = {};
 
 const Hero: React.FC<Props> = (props) => {
