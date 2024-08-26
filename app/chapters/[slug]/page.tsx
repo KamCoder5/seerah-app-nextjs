@@ -17,6 +17,7 @@ import useChapterStore from "@/store/useChapterStore";
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 import StartFinalQuiz from "@/components/startFinalQuiz/StartFinalQuiz";
+import EndFinalQuiz from "@/components/endFinalQuiz/EndFinalQuiz";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -43,23 +44,28 @@ export default function ChaptersPage() {
 	const hasMorePages = () => data && pageIndex < (data.contentSections?.length ?? 0) - 1;
 	const isLastPage = (): boolean => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 1);
 	const isSecondToLastPage = () => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 2);
+	const isAfterLastPage = () => !!(data && pageIndex === (data.contentSections?.length ?? 0));
 
-	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
+	const showPassedQuizPage = () => setPageIndex(pageIndex + 1);
 
 	const finishChapter = () => {
 		if (allChaptersData) {
 			const allChapterSlugs = allChaptersData.map((chapter) => chapter.slug);
 			unlockNextChapter(slug, allChapterSlugs);
-			router.push("/chapters");
 		}
+	};
+
+	const allChaptersOnClick = () => {
+		router.push("/chapters");
 	};
 
 	const nextPage = () => {
 		if (hasMorePages()) {
-			proceedToNextPage();
+			showPassedQuizPage();
 			resetQuizState();
 		} else if (isLastPage()) {
 			finishChapter();
+			showPassedQuizPage();
 		}
 	};
 
@@ -112,7 +118,9 @@ export default function ChaptersPage() {
 					exit={{ opacity: 0, x: -50 }}
 					transition={{ duration: 0.5 }}
 				>
-					{isSecondToLastPage() ? (
+					{isAfterLastPage() ? (
+						<EndFinalQuiz onClick={allChaptersOnClick} />
+					) : isSecondToLastPage() ? (
 						<StartFinalQuiz onClick={nextPage} />
 					) : (
 						<ContentSection
@@ -134,16 +142,18 @@ export default function ChaptersPage() {
 					)}
 				</motion.div>
 
-				<NavigationButtonsBar
-					isLastPage={isLastPage()}
-					onNext={nextPage}
-					onPrev={prevPage}
-					hasNext={!!hasMorePages()}
-					hasPrev={pageIndex > 0}
-					disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
-					currentPageIndex={currentPageIndex}
-					contentLength={contentLength}
-				/>
+				{!isAfterLastPage() && (
+					<NavigationButtonsBar
+						isLastPage={isLastPage()}
+						onNext={nextPage}
+						onPrev={prevPage}
+						hasNext={!!hasMorePages()}
+						hasPrev={pageIndex > 0}
+						disableNext={isCurrentPageQuiz(data, pageIndex) && !isQuizPassedPerfectly}
+						currentPageIndex={currentPageIndex}
+						contentLength={contentLength}
+					/>
+				)}
 			</div>
 		</motion.div>
 	);
