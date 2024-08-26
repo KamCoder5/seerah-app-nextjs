@@ -16,7 +16,7 @@ import useChapterStore from "@/store/useChapterStore";
 
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
-import StartFinalQuiz from "@/components/StartFinalQuiz/QuizFinale";
+import StartFinalQuiz from "@/components/startFinalQuiz/StartFinalQuiz";
 
 export default function ChaptersPage() {
 	const router = useRouter();
