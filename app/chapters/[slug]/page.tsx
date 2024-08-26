@@ -16,6 +16,7 @@ import useChapterStore from "@/store/useChapterStore";
 
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
+import QuizFinale from "@/components/quiz-finale/QuizFinale";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -41,6 +42,7 @@ export default function ChaptersPage() {
 
 	const hasMorePages = () => data && pageIndex < (data.contentSections?.length ?? 0) - 1;
 	const isLastPage = (): boolean => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 1);
+	const isSecondToLastPage = () => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 2);
 
 	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
 
@@ -110,22 +112,26 @@ export default function ChaptersPage() {
 					exit={{ opacity: 0, x: -50 }}
 					transition={{ duration: 0.5 }}
 				>
-					<ContentSection
-						contentHtml={data?.contentSections?.[pageIndex] ?? ""}
-						isQuiz={isCurrentPageQuiz(data, pageIndex)}
-						showScore={showScore}
-						score={score}
-						totalQuestions={data?.allQuizData?.[pageIndex]?.length ?? 0}
-						questionNumber={currentQuestion + 1}
-						questionText={data?.allQuizData?.[pageIndex]?.[currentQuestion]?.questionText || ""}
-						options={data?.allQuizData?.[pageIndex]?.[currentQuestion]?.answerOptions || []}
-						onOptionClick={handleAnswerOptionClick}
-						onRetakeQuiz={() => resetQuiz(resetQuizState)}
-						onNextQuestion={handleNextQuestion}
-						selectedOptionIndex={selectedOptionIndex}
-						isAnswered={isAnswered}
-						isLastQuestion={currentQuestion + 1 >= (data?.allQuizData?.[pageIndex]?.length ?? 0)}
-					/>
+					{isSecondToLastPage() ? (
+						<QuizFinale />
+					) : (
+						<ContentSection
+							contentHtml={data?.contentSections?.[pageIndex] ?? ""}
+							isQuiz={isCurrentPageQuiz(data, pageIndex)}
+							showScore={showScore}
+							score={score}
+							totalQuestions={data?.allQuizData?.[pageIndex]?.length ?? 0}
+							questionNumber={currentQuestion + 1}
+							questionText={data?.allQuizData?.[pageIndex]?.[currentQuestion]?.questionText || ""}
+							options={data?.allQuizData?.[pageIndex]?.[currentQuestion]?.answerOptions || []}
+							onOptionClick={handleAnswerOptionClick}
+							onRetakeQuiz={() => resetQuiz(resetQuizState)}
+							onNextQuestion={handleNextQuestion}
+							selectedOptionIndex={selectedOptionIndex}
+							isAnswered={isAnswered}
+							isLastQuestion={currentQuestion + 1 >= (data?.allQuizData?.[pageIndex]?.length ?? 0)}
+						/>
+					)}
 				</motion.div>
 
 				<NavigationButtonsBar
