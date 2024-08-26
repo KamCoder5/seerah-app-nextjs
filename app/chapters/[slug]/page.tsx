@@ -16,7 +16,7 @@ import useChapterStore from "@/store/useChapterStore";
 
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
-import QuizFinale from "@/components/quiz-finale/QuizFinale";
+import StartFinalQuiz from "@/components/StartFinalQuiz/QuizFinale";
 
 export default function ChaptersPage() {
 	const router = useRouter();
@@ -113,7 +113,7 @@ export default function ChaptersPage() {
 					transition={{ duration: 0.5 }}
 				>
 					{isSecondToLastPage() ? (
-						<QuizFinale />
+						<StartFinalQuiz onClick={nextPage} />
 					) : (
 						<ContentSection
 							contentHtml={data?.contentSections?.[pageIndex] ?? ""}
