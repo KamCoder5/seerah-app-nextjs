@@ -7,10 +7,10 @@ const Hero: React.FC<Props> = (props) => {
 	return (
 		<section className="h-svh bg-white flex items-center align-center">
 			<div className="container px-5 mx-auto text-center">
-				<div className="md:mb-12 space-y-4">
+				<div className="mb-6 md:mb-12 space-y-4">
 					<h4 className="text-xl font-semibold md:text-3xl">Building...</h4>
 					<h1 className="text-3xl font-bold md:text-7xl">The Seerah App</h1>
-					<p className="text-base mx-auto text-lg text-gray-600 md:w-3/4 md:text-xl">
+					<p className="text-base mx-auto md:text-lg text-gray-600 md:w-2/4 xl:w-1/2 xl:text-xl">
 						Helping everyday Muslims learn and remember the life of the Prophet Muhammad ﷺ
 					</p>
 				</div>
