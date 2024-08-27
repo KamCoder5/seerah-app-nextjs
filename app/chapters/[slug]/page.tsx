@@ -16,7 +16,7 @@ import useChapterStore from "@/store/useChapterStore";
 
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
-import StartFinalQuiz from "@/components/startFinalQuiz/StartFinalQuiz";
+import StartFinalQuiz from "@/components/StartFinalQuiz/StartFinalQuiz";
 import EndFinalQuiz from "@/components/endFinalQuiz/EndFinalQuiz";
 
 export default function ChaptersPage() {
@@ -43,8 +43,9 @@ export default function ChaptersPage() {
 
 	const hasMorePages = () => data && pageIndex < (data.contentSections?.length ?? 0) - 1;
 	const isLastPage = (): boolean => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 1);
-	const isSecondToLastPage = () => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 2);
-	const isAfterLastPage = () => !!(data && pageIndex === (data.contentSections?.length ?? 0));
+	// FinalQuiz is always one before the final page of the content sections
+	const isBeforeFinalQuiz = () => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 2);
+	const isAfterFinalQuiz = () => !!(data && pageIndex === (data.contentSections?.length ?? 0));
 
 	const showPassedQuizPage = () => setPageIndex(pageIndex + 1);
 
@@ -118,9 +119,9 @@ export default function ChaptersPage() {
 					exit={{ opacity: 0, x: -50 }}
 					transition={{ duration: 0.5 }}
 				>
-					{isAfterLastPage() ? (
+					{isAfterFinalQuiz() ? (
 						<EndFinalQuiz onClick={allChaptersOnClick} />
-					) : isSecondToLastPage() ? (
+					) : isBeforeFinalQuiz() ? (
 						<StartFinalQuiz onClick={nextPage} />
 					) : (
 						<ContentSection
@@ -142,7 +143,7 @@ export default function ChaptersPage() {
 					)}
 				</motion.div>
 
-				{!isAfterLastPage() && (
+				{!isAfterFinalQuiz() && (
 					<NavigationButtonsBar
 						isLastPage={isLastPage()}
 						onNext={nextPage}
