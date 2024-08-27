@@ -24,7 +24,7 @@ const NavigationButtonsBar: React.FC<NavigationButtonsProps> = ({
 	isLastPage,
 }) => {
 	return (
-		<div className="flex justify-between items-center mt-6 sticky bottom-0 w-full bg-brown-50 border-t py-2">
+		<div className="flex justify-between items-center mt-6 w-full bg-brown-50 border-t py-2">
 			<div className="flex-1 flex items-center">
 				{hasPrev && !isLastPage ? (
 					<button
