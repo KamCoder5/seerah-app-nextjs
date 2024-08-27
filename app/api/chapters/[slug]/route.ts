@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import { BASE_URL } from "@/constants/appConstants";
 
 export async function GET(request: Request, { params }: { params: { slug: string } }) {
 	const { slug } = params;
@@ -10,7 +9,7 @@ export async function GET(request: Request, { params }: { params: { slug: string
 	}
 
 	try {
-		const apiUrl = new URL("/wp-json/wp/v2/chapter", BASE_URL);
+		const apiUrl = new URL("/wp-json/wp/v2/chapter", process.env.API_URL);
 		apiUrl.searchParams.append("slug", slug);
 		apiUrl.searchParams.append("_fields", "title,content,acf,slug,status");
 

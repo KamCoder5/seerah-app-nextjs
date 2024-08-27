@@ -1,40 +1,37 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { FaCamera, FaMicrophoneSlash, FaImage } from "react-icons/fa"; // Import the icons from react-icons
-
 type Props = {};
 
 const Hero: React.FC<Props> = (props) => {
 	return (
-		<section className="py-20 bg-gray-200 lg:py-28">
+		<section className="h-svh bg-white flex items-center align-center">
 			<div className="container px-5 mx-auto text-center">
-				<div className="mb-16">
-					<div className="mb-12 space-y-4">
-						<h4 className="text-2xl font-semibold sm:text-3xl">Phantom 4PRO V2.0</h4>
-						<h1 className="text-5xl font-bold sm:text-7xl">Visionary intelligence</h1>
-						<p className="mx-auto text-lg text-gray-600 sm:w-3/4 lg:w-2/4 xl:w-96 sm:text-xl">
-							Single Product eCommerce landing page template
-						</p>
-					</div>
-
-					<Link
-						href="/chapters"
-						className="inline-block px-12 py-4 text-lg font-semibold text-white transition duration-300 ease-in-out transform bg-blue-800 rounded-full shadow hover:bg-blue-900 hover:shadow-lg hover:scale-110"
-					>
-						Start reading!
-					</Link>
+				<div className="mb-6 md:mb-12 space-y-4">
+					<h4 className="text-xl font-semibold md:text-3xl">Building...</h4>
+					<h1 className="text-3xl font-bold md:text-7xl">The Seerah App</h1>
+					<p className="text-base mx-auto md:text-lg text-gray-600 md:w-2/4 xl:w-1/2 xl:text-xl">
+						Helping everyday Muslims learn and remember the life of the Prophet Muhammad ﷺ
+					</p>
 				</div>
-				<div className="mx-auto xl:max-w-screen-lg mb-28">
+
+				<Link
+					href="/chapters"
+					className="mb-12 inline-block px-12 py-4 text-lg font-semibold text-white transition duration-300 ease-in-out transform bg-blue-800 rounded-full shadow hover:bg-blue-900 hover:shadow-lg hover:scale-110"
+				>
+					Start reading!
+				</Link>
+
+				<div className="mx-auto w-1/2 lg:w-1/5">
 					<Image
-						src="/images/template/hero-drone.png"
+						src="/images/template/chapter-cropped.png"
 						alt="Drone"
-						width={500}
-						height={500}
+						width={250}
+						height={250}
 						layout="responsive"
 					/>
 				</div>
-				<div className="space-y-12">
+				{/* <div className="space-y-12">
 					<p className="mx-auto text-xl font-semibold text-gray-600 lg:w-3/5 sm:text-3xl">
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet obcaecati perferendis voluptas quasi
 						quidem natus error voluptatibus.
@@ -68,7 +65,7 @@ const Hero: React.FC<Props> = (props) => {
 							</span>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</section>
 	);
