@@ -47,7 +47,7 @@ export default function ChaptersPage() {
 	const isBeforeFinalQuiz = () => !!(data && pageIndex === (data.contentSections?.length ?? 0) - 2);
 	const isAfterFinalQuiz = () => !!(data && pageIndex === (data.contentSections?.length ?? 0));
 
-	const showPassedQuizPage = () => setPageIndex(pageIndex + 1);
+	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
 
 	const finishChapter = () => {
 		if (allChaptersData) {
@@ -62,11 +62,11 @@ export default function ChaptersPage() {
 
 	const nextPage = () => {
 		if (hasMorePages()) {
-			showPassedQuizPage();
+			proceedToNextPage();
 			resetQuizState();
 		} else if (isLastPage()) {
 			finishChapter();
-			showPassedQuizPage();
+			proceedToNextPage();
 		}
 	};
 
