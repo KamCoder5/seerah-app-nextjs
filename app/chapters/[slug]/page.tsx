@@ -16,10 +16,12 @@ import useChapterStore from "@/store/useChapterStore";
 
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
+import Modal from "@/components/ui/modal/Modal";
 
 export default function ChaptersPage() {
 	const router = useRouter();
 	const { slug } = useParams() as { slug: string };
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [pageIndex, setPageIndex] = useState(0);
 
@@ -49,7 +51,12 @@ export default function ChaptersPage() {
 			const allChapterSlugs = allChaptersData.map((chapter) => chapter.slug);
 			unlockNextChapter(slug, allChapterSlugs);
 			router.push("/chapters");
+			setIsModalOpen(false);
 		}
+	};
+
+	const openModal = () => {
+		setIsModalOpen(true);
 	};
 
 	const nextPage = () => {
@@ -57,7 +64,7 @@ export default function ChaptersPage() {
 			proceedToNextPage();
 			resetQuizState();
 		} else if (isLastPage()) {
-			finishChapter();
+			openModal();
 		}
 	};
 
@@ -139,6 +146,13 @@ export default function ChaptersPage() {
 					contentLength={contentLength}
 				/>
 			</div>
+			<Modal
+				isOpen={isModalOpen}
+				onClose={finishChapter}
+				title="Congratulations!"
+				description="You have successfully completed the chapter."
+				buttonText="Go to All Chapters"
+			/>
 		</motion.div>
 	);
 }

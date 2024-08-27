@@ -83,3 +83,23 @@ h6 {
 .wp-content .wp-block-cover {
 	@apply mb-3 md:mb-6;
 }
+
+.has-large-font-size {
+	@apply text-3xl md:text-5xl;
+}
+
+.has-medium-font-size {
+	@apply text-lg;
+}
+
+.has-text-align-center {
+	@apply text-center;
+}
+
+.has-small-font-size {
+	@apply text-sm;
+}
+
+.wp-block-button .wp-block-button__width-100 {
+	@apply w-full;
+}
