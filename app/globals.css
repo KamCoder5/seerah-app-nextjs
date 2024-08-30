@@ -96,10 +96,18 @@ h6 {
 	@apply text-center;
 }
 
+.has-text-align-right {
+	@apply text-right;
+}
+
 .has-small-font-size {
 	@apply text-sm;
 }
 
 .wp-block-button .wp-block-button__width-100 {
 	@apply w-full;
+}
+
+.chapter-complete-heading {
+	@apply text-brown-500;
 }
