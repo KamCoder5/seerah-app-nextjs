@@ -15,7 +15,7 @@ const QuizOptions: React.FC<QuizOptionsProps> = ({ options, onOptionClick, selec
 		return cn(
 			unselectedOptionStyle,
 			!isAnswered && "hover:bg-gray-200",
-			isAnswered && index === selectedOptionIndex && (isCorrect ? "bg-green-500 text-white" : "bg-red-500 text-white")
+			isAnswered && index === selectedOptionIndex && (isCorrect ? "bg-green-700 text-white" : "bg-red-700 text-white")
 		);
 	};
 

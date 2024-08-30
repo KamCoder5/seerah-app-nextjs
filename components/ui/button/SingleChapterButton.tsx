@@ -67,7 +67,7 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({
 	const isComingSoonBadge = (showBadge: boolean) => {
 		if (showBadge) {
 			return (
-				<div className="absolute top-1 left-1 z-10">
+				<div className="absolute top-1 left-4 z-10">
 					<Badge variant="secondary">soon</Badge>
 				</div>
 			);
