@@ -7,6 +7,7 @@ export type Chapter = {
 	acf: {
 		is_new: boolean;
 		subtitle: string;
+		is_coming_soon: boolean;
 	};
 };
 

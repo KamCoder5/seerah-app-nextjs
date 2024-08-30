@@ -12,6 +12,7 @@ interface StyledButtonProps {
 	onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	disabled?: boolean;
 	isNew?: boolean;
+	isComingSoon?: boolean;
 }
 
 const SingleChapterButton: React.FC<StyledButtonProps> = ({
@@ -21,14 +22,18 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({
 	slug,
 	disabled = false,
 	isNew = false,
+	isComingSoon = false,
 }) => {
 	const chapterNumber = slug.split("chapter-")[1];
+
+	// Override disabled state if isComingSoon is true
+	const effectiveDisabled = disabled || isComingSoon;
 
 	const isChapterUnlocked = () => (
 		<>
 			<div className="relative flex-shrink-0">
 				<Image
-					className={cn("rounded-l-lg h-20 w-20", disabled && "opacity-50")}
+					className={cn("rounded-l-lg h-20 w-20", effectiveDisabled && "opacity-50")}
 					src={chapterImage || "/images/icons/chapter-img-example.png"}
 					alt={`Chapter ${chapterNumber}`}
 					layout="fixed"
@@ -39,16 +44,16 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({
 					<span className="text-white text-lg font-bold">{chapterNumber}</span>
 				</div>
 			</div>
-			<span className={cn("flex-1 text-lg font-light", disabled && "text-opacity-70")}>{title}</span>
-			{disabled ? (
-				<FaLock className={cn("h-4 w-4", disabled && "opacity-50")} />
+			<span className={cn("flex-1 text-lg font-light", effectiveDisabled && "text-opacity-70")}>{title}</span>
+			{effectiveDisabled ? (
+				<FaLock className={cn("h-4 w-4", effectiveDisabled && "opacity-50")} />
 			) : (
 				<FaChevronRight className={cn("h-4 w-4")} />
 			)}
 		</>
 	);
 
-	const isNewChapter = (showBadge: boolean) => {
+	const isNewChapterBadge = (showBadge: boolean) => {
 		if (showBadge) {
 			return (
 				<div className="absolute top-1 left-1 z-10">
@@ -59,18 +64,30 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({
 		return null;
 	};
 
+	const isComingSoonBadge = (showBadge: boolean) => {
+		if (showBadge) {
+			return (
+				<div className="absolute top-1 left-1 z-10">
+					<Badge variant="secondary">soon</Badge>
+				</div>
+			);
+		}
+		return null;
+	};
+
 	return (
 		<motion.button
 			className={cn(
 				"flex items-center rounded-lg h-20 bg-white shadow-md gap-2 w-full pr-2 relative",
-				disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
+				effectiveDisabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-90"
 			)}
-			onClick={disabled ? undefined : onClick}
-			disabled={disabled}
-			whileHover={{ scale: disabled ? 1 : 1.05 }}
-			whileTap={{ scale: disabled ? 1 : 0.95 }}
+			onClick={effectiveDisabled ? undefined : onClick}
+			disabled={effectiveDisabled}
+			whileHover={{ scale: effectiveDisabled ? 1 : 1.05 }}
+			whileTap={{ scale: effectiveDisabled ? 1 : 0.95 }}
 		>
-			{isNewChapter(isNew)}
+			{isComingSoonBadge(isComingSoon)}
+			{isNewChapterBadge(isNew)}
 			{isChapterUnlocked()}
 		</motion.button>
 	);
