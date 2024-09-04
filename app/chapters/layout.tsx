@@ -5,13 +5,7 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-	return (
-		<>
-			<div className="container max-w-3xl m-auto">
-				<main>{children}</main>
-			</div>
-		</>
-	);
+	return <main className="container max-w-3xl m-auto overflow-hidden">{children}</main>;
 };
 
 export default Layout;
