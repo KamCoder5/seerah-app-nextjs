@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import axios from "axios";
 
 export async function GET(request: Request, { params }: { params: { slug: string } }) {
 	const { slug } = params;
@@ -9,12 +8,23 @@ export async function GET(request: Request, { params }: { params: { slug: string
 	}
 
 	try {
+		// Construct the API URL
 		const apiUrl = new URL("/wp-json/wp/v2/chapter", process.env.API_URL);
 		apiUrl.searchParams.append("slug", slug);
 		apiUrl.searchParams.append("_fields", "title,content,acf,slug,status");
 
-		const response = await axios.get(apiUrl.toString());
-		const data = response.data;
+		// Use fetch with no-store to prevent caching
+		const response = await fetch(apiUrl.toString(), {
+			method: "GET",
+			cache: "no-store", // Disable caching
+		});
+
+		// Handle any non-200 responses
+		if (!response.ok) {
+			throw new Error(`Error fetching content: ${response.statusText}`);
+		}
+
+		const data = await response.json();
 
 		if (data.length === 0) {
 			return NextResponse.json({ message: "No content found for the provided slug." }, { status: 404 });
@@ -22,9 +32,6 @@ export async function GET(request: Request, { params }: { params: { slug: string
 
 		return NextResponse.json({ data });
 	} catch (error: any) {
-		return NextResponse.json(
-			{ message: `Error fetching content: ${error.response?.data?.message || error.message}` },
-			{ status: 500 }
-		);
+		return NextResponse.json({ message: `Error fetching content: ${error.message}` }, { status: 500 });
 	}
 }
