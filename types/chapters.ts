@@ -8,6 +8,7 @@ export type Chapter = {
 		is_new: boolean;
 		subtitle: string;
 		is_coming_soon: boolean;
+		timeline: string;
 	};
 };
 
