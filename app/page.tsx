@@ -1,13 +1,11 @@
+import FloatingButton from "@/components/ui/floating-button/FloatingButton";
 import Hero from "@/components/ui/hero/Hero";
 
 export default function Home() {
 	return (
-		<div className="overflow-hidden min-h-screen">
+		<div>
 			<Hero />
-			{/* <FeaturesBlocks />
-			<Features />
-			<BuySection />
-			<Footer /> */}
+			<FloatingButton />
 		</div>
 	);
 }
