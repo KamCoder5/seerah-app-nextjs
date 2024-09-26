@@ -25,7 +25,7 @@ const Hero: React.FC<Props> = (props) => {
 				<div className="mx-auto max-w-52 xl:max-w-72">
 					<Image
 						src="/images/template/chapter-cropped.png"
-						alt="Drone"
+						alt="Seerah App"
 						width={250}
 						height={250}
 						layout="responsive"

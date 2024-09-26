@@ -18,9 +18,7 @@ const ChapterList: React.FC<ChapterListProps> = ({ chapters, unlockedChapters, o
 			{chapters &&
 				chapters.map((chapter, index) => {
 					const topicTitle = getTopicDescription(chapter.acf.timeline);
-					// Only display the topic title if it hasn't been displayed yet
 					const shouldDisplayTitle = !displayedTopics.has(topicTitle);
-					// Add the topic title to the Set after deciding to display it or not
 					displayedTopics.add(topicTitle);
 
 					return (
