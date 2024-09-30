@@ -20,7 +20,6 @@ const ChaptersRoot: React.FC = () => {
 	const handleChapterClick = (slug: string) => {
 		router.push(`/chapters/${slug}`);
 	};
-
 	if (isLoading)
 		return (
 			<LoadingSpinner
