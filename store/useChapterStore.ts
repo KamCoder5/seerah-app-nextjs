@@ -1,6 +1,6 @@
 // app/store/useChapterStore.ts
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 type ChapterState = {
 	unlockedChapters: string[];
@@ -24,8 +24,8 @@ const useChapterStore = create<ChapterState>()(
 				}),
 		}),
 		{
-			name: "chapter-storage", // name of the item in the storage (must be unique)
-			getStorage: () => localStorage, // specify which storage to use (optional, defaults to localStorage)
+			name: "chapter-storage",
+			storage: createJSONStorage(() => localStorage),
 		}
 	)
 );
