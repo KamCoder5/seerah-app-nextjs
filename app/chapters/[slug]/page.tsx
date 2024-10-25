@@ -17,11 +17,15 @@ import useChapterStore from "@/store/useChapterStore";
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { isCurrentPageQuiz, resetQuiz } from "@/lib/quizUtils";
 import Modal from "@/components/ui/modal/Modal";
+import Confetti from "react-confetti";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 export default function ChaptersPage() {
 	const router = useRouter();
 	const { slug } = useParams() as { slug: string };
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [showConfetti, setShowConfetti] = useState(false);
+	const { width, height } = useWindowSize();
 
 	const [pageIndex, setPageIndex] = useState(0);
 
@@ -47,6 +51,7 @@ export default function ChaptersPage() {
 	const proceedToNextPage = () => setPageIndex(pageIndex + 1);
 
 	const finishChapter = () => {
+		setShowConfetti(false);
 		if (allChaptersData) {
 			const allChapterSlugs = allChaptersData.map((chapter) => chapter.slug);
 			unlockNextChapter(slug, allChapterSlugs);
@@ -57,6 +62,7 @@ export default function ChaptersPage() {
 
 	const openModal = () => {
 		setIsModalOpen(true);
+		setShowConfetti(true);
 	};
 
 	const nextPage = () => {
@@ -146,6 +152,12 @@ export default function ChaptersPage() {
 					contentLength={contentLength}
 				/>
 			</div>
+			{showConfetti && (
+				<Confetti
+					width={width || window.innerWidth}
+					height={height || window.innerHeight}
+				/>
+			)}
 			<Modal
 				isOpen={isModalOpen}
 				onClose={finishChapter}
