@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { PopupButton } from "@typeform/embed-react";
-import { HOME_CONSTANTS } from "@/constants/pageConstants";
+import { TYPEFORM_ID } from "@/constants/pageConstants";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -49,7 +49,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, butt
 							{buttonText}
 						</button>
 						<PopupButton
-							id={HOME_CONSTANTS.TYPEFORM_ID}
+							id={TYPEFORM_ID}
 							className="text-sm flex justify-center items-center rounded-lg min-h-8 bg-blue-500 w-1/2 text-white  ">
 							Give Feedback
 						</PopupButton>
