@@ -6,5 +6,6 @@ export const HOME_CONSTANTS = {
 	CHAPTER_HEADING: "Arabia Before Islam",
 };
 
+export const TYPEFORM_ID =  "jK5VfgK6"
 // 24 hours in milliseconds
 export const TWENTY_FOUR_HOURS = 1000 * 60 * 60 * 24;

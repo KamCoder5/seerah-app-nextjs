@@ -11,7 +11,7 @@ export async function GET() {
 		// Use fetch with no-store to prevent caching
 		const response = await fetch(apiUrl.toString(), {
 			method: "GET",
-			// cache: "no-store", // Disable caching
+			 cache: "no-store", // Disable caching
 		});
 
 		// Handle any non-200 responses
