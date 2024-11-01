@@ -11,6 +11,7 @@ import ChapterHeader from "@/components/chapters/ChapterHeader";
 import ChapterList from "@/components/chapters/ChapterList";
 import ContinueReadingButton from "@/components/ui/button/ContinueReadingButton";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
+import Link from "next/link";
 
 const ChaptersRoot: React.FC = () => {
 	const { data, isLoading, error } = useFetchAllChapters();
@@ -41,10 +42,13 @@ const ChaptersRoot: React.FC = () => {
 			transition={pageTransition}
 		>
 			<main className="relative min-h-dvh flex flex-col justify-between">
-				<button className="flex text-brown-500 mt-4 font-medium"
-				onClick={() => router.push(`/`)}>
-				   Home
-				</button>
+				<Link
+					href="/"
+					className="flex text-brown-500 mt-4 font-medium "
+				>
+					Home 
+					
+				</Link>
 				<div className="flex flex-col items-center flex-grow pt-3 md:pt-6">
 					<ChapterHeader />
 					<ChapterList
