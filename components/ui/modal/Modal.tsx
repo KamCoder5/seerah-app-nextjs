@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
+import { PopupButton } from "@typeform/embed-react";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -38,13 +39,20 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, butt
 				>
 					<DialogTitle className="font-bold text-4xl mb-3 md:mb-6">{title}</DialogTitle>
 					<Description>{description}</Description>
-					<div className="flex gap-4">
+		
+					<div className="flex flex-col justify-center items-center gap-4">
 						<button
 							className="text-sm flex justify-center items-center rounded-lg min-h-16 bg-blue-500 w-full text-white"
 							onClick={onClose}
 						>
 							{buttonText}
 						</button>
+						<PopupButton
+							id="jK5VfgK6" // Typeform ID
+							className="text-sm flex justify-center items-center rounded-lg min-h-8 bg-blue-500 w-1/2 text-white  ">
+							Give Feedback
+						</PopupButton>
+		
 					</div>
 				</DialogPanel>
 			</div>
@@ -53,3 +61,5 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, butt
 };
 
 export default Modal;
+
+
