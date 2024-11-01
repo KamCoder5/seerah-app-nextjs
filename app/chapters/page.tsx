@@ -43,7 +43,7 @@ const ChaptersRoot: React.FC = () => {
 			<main className="relative min-h-dvh flex flex-col justify-between">
 				<button className="flex text-brown-500 mt-4 font-medium"
 				onClick={() => router.push(`/`)}>
-					Home
+				   Home
 				</button>
 				<div className="flex flex-col items-center flex-grow pt-3 md:pt-6">
 					<ChapterHeader />
