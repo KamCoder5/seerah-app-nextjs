@@ -4,9 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { pageVariants, pageTransition } from "@/lib/animation"; // Importing from the same location as ChaptersRoot
+import { pageVariants, pageTransition } from "@/lib/animation";
 
-const Home: React.FC = () => {
+const Hero: React.FC = () => {
 	return (
 		<motion.div
 			initial="initial"
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
 						href="/chapters"
 						className="mb-12 inline-block px-12 py-4 text-lg font-semibold text-white transition duration-300 ease-in-out transform bg-blue-800 rounded-full shadow hover:bg-blue-900 hover:shadow-lg hover:scale-110"
 					>
-						Try the demo! 
+						Try the demo!
 					</Link>
 
 					<div className="mx-auto max-w-52 xl:max-w-72">
@@ -47,4 +47,4 @@ const Home: React.FC = () => {
 	);
 };
 
-export default Home;
+export default Hero;
