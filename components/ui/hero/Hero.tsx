@@ -19,7 +19,8 @@ const Hero: React.FC<Props> = (props) => {
 					href="/chapters"
 					className="mb-12 inline-block px-12 py-4 text-lg font-semibold text-white transition duration-300 ease-in-out transform bg-blue-800 rounded-full shadow hover:bg-blue-900 hover:shadow-lg hover:scale-110"
 				>
-					Try the demo!
+					Try the demo! 
+					
 				</Link>
 
 				<div className="mx-auto max-w-52 xl:max-w-72">
