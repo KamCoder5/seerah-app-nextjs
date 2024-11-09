@@ -130,8 +130,7 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What is The Seerah App?</h2>
 						<p className="text-center mb-12 max-w-2xl mx-auto">
-							An App that helps us learn and remember the life of Prophet Muhammad ﷺ through simplified, structured,
-							bite-sized, and engaging chapters - knowledge we can use in our everyday lives.
+						An app that helps us learn and remember the life of Prophet Muhammad ﷺ through simple, bite-sized, and engaging chapters — knowledge you can apply in your everyday lives.
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
 							{[
@@ -168,11 +167,44 @@ export default function Home() {
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
 							{[
-								{ icon: FaLanguage, text: "Complex language" },
-								{ icon: FaClock, text: "Time" },
-								{ icon: FaChartLine, text: "Varying depths" },
+								{ icon: FaLanguage, text: "Language too complex " },
+								{ icon: FaClock, text: "Too time-consuming" },
+								{ icon: FaChartLine, text: "Too detailed or too simple" },
 								{ icon: FaCompass, text: "Unclear starting point" },
-								{ icon: FaUser, text: "Self-orientation" },
+								{ icon: FaUser, text: "Unclear how to progress" },
+							].map((item, index) => (
+								<div
+									key={index}
+									className="flex flex-col items-center"
+								>
+									<div className="w-16 h-16 flex items-center justify-center bg-brown-500 rounded-full mb-4">
+										<item.icon className="text-4xl text-white" />
+									</div>
+									<p className="text-lg font-semibold text-center font-sans">{item.text}</p>
+								</div>
+							))}
+						</div>
+					</motion.div>
+				</section>
+				<section className="bg-brown-50 py-16 md:py-32">
+					<motion.div
+						className="container mx-auto px-4"
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						variants={fadeInVariants}
+					>
+						<h2 className="text-3xl font-bold text-center mb-8">What's our solution?</h2>
+						<p className="text-center mb-12">
+						A Seerah App for the Everyday Muslim, to help us learn (and actually remember!) the Seerah.  
+						</p>
+						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+							{[
+								{ icon: FaLanguage, text: "Simplified Language" },
+								{ icon: FaClock, text: "Short, Bite-Sized Learning:" },
+								{ icon: FaChartLine, text: "Too detailed or too simple" },
+								{ icon: FaCompass, text: "Structured Learning Path" },
+								{ icon: FaUser, text: "Memorisation Tools and Clear Progression" },
 							].map((item, index) => (
 								<div
 									key={index}
@@ -188,7 +220,7 @@ export default function Home() {
 					</motion.div>
 				</section>
 
-				<section className="bg-brown-50 py-16 md:py-32">
+				<section className="bg-white py-16 md:py-32">
 					<motion.div
 						className="container mx-auto px-4 max-w-2xl"
 						initial="hidden"
@@ -207,16 +239,15 @@ export default function Home() {
 									<AvatarFallback>Tanveer</AvatarFallback>
 								</Avatar>
 							</div>
-							<h2 className="text-3xl font-bold mb-4">Salaam! I'm Kamilah, the founder of The Seerah App 😊</h2>
+							<h2 className="text-3xl font-bold mb-4">Salaam! I'm Kamilah, the founder of The Seerah App.</h2>
+
 							<p className="mb-4">
-								We're creating a beautifully designed and structured tool that makes learning about the life of our
-								Prophet ﷺ memorable and accessible. Existing resources can feel overwhelming or time-consuming
-								sometimes, so we're making knowledge accessible - building The Seerah App for everyday Muslims who want
-								to strengthen their connection to the Prophet ﷺ.
+								We're making knowledge accessible by creating a beautifully designed and structured tool that makes learning about the life of our
+								Prophet Muhammad ﷺ easy and memorable.
 							</p>
 							<p className="mb-4">
 								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah, and I want
-								you to be a part of the build with me—by sharing your ideas, feedback, and suggestions along the way.
+								you to be a part of the build with me by sharing your ideas, feedback, and suggestions along the way.
 							</p>
 							<p>
 								So let's earn some passive-sadaqah and spread the word. If you have ideas or feedback, we'd love to hear
@@ -226,7 +257,7 @@ export default function Home() {
 					</motion.div>
 				</section>
 
-				<section className="bg-white py-16 md:py-32">
+				<section className="bg-brown-50 py-16 md:py-32">
 					<motion.div
 						className="container mx-auto px-4 text-center"
 						initial="hidden"
@@ -235,7 +266,8 @@ export default function Home() {
 						variants={fadeInVariants}
 					>
 						<h2 className="text-3xl font-bold mb-8">Where can I get it?</h2>
-						<p className="mb-8">You can try out the demo now</p>
+						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
+
 						<Button
 							size="xl"
 							className="mb-8"
@@ -256,7 +288,7 @@ export default function Home() {
 					</motion.div>
 				</section>
 
-				<footer className="bg-brown-50 text-black py-8">
+				<footer className="bg-white text-black py-8">
 					<div className="container mx-auto px-4">
 						<div className="flex flex-col md:flex-row justify-between items-center">
 							<div className="mb-4 md:mb-0">
@@ -285,12 +317,12 @@ export default function Home() {
 							</div>
 							<div className="flex gap-4">
 								<Link
-									href="https://x.com/theseerahapp"
+									href="https://x.com/KamCoder5"
 									aria-label="Twitter"
 								>
 									<FaXTwitter className="text-2xl" />
 								</Link>
-								<Link
+								{/* <Link
 									href="https://instagram.com/theseerahapp"
 									aria-label="Instagram"
 								>
@@ -301,7 +333,7 @@ export default function Home() {
 									aria-label="LinkedIn"
 								>
 									<FaLinkedin className="text-2xl" />
-								</Link>
+								</Link> */}
 							</div>
 						</div>
 					</div>
