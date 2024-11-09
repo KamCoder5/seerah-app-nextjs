@@ -247,7 +247,7 @@ export default function Home() {
 								Prophet Muhammad ﷺ easy and memorable.
 							</p>
 							<p className="mb-2">
-								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah, and I want
+								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah. So, get involved! I want
 								you to be a part of the build with me by sharing your ideas, feedback, and suggestions along the way.
 							</p>
 							<p>
@@ -322,6 +322,17 @@ export default function Home() {
 										TheSeerahApp
 									</a>
 									. All rights reserved.
+								</p>
+								<p>
+									Contact us{" "}
+									<a
+										href="mailto:hi@seerahapp.com"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="underline text-brown-600"
+									>
+										hi@seerahapp.com
+									</a>
 								</p>
 								<p>
 									Developed by{" "}
