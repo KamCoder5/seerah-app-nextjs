@@ -324,7 +324,7 @@ export default function Home() {
 									. All rights reserved.
 								</p>
 								<p>
-									Contact us{" "}
+									Contact us at {" "}
 									<a
 										href="mailto:hi@seerahapp.com"
 										target="_blank"
