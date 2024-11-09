@@ -65,7 +65,7 @@ export default function Home() {
 						</Link>
 						<div className="flex space-x-3">
 							<Button asChild>
-								<Link href="/chapters">Try demo</Link>
+								<Link href="/chapters">Join Waitlist</Link>
 							</Button>
 
 							<Button
@@ -266,7 +266,7 @@ export default function Home() {
 						viewport={{ once: true }}
 						variants={fadeInVariants}
 					>
-						<h2 className="text-3xl font-bold mb-8">Where can I get it?</h2>
+						<h2 className="text-3xl font-bold mb-8">Where can I get The Seerah App?</h2>
 						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
 
 						<Button
@@ -277,7 +277,7 @@ export default function Home() {
 							<Link href="/chapters">Try demo</Link>
 						</Button>
 						<p className="text-xl font-semibold mb-4">Coming soon:</p>
-						<div className="flex justify-center gap-8 mb-8">
+						<div className="flex justify-center gap-8 mb-16">
 						<Button disabled={true}>
 								<FaApple className="text-xl mr-2" />
 								<span>iPhone</span>
@@ -288,6 +288,8 @@ export default function Home() {
 							</Button>
 							
 						</div>
+						<h2 className="text-3xl font-bold mb-8">Stay Updated</h2>
+
 						<p className="mb-2">Follow me on X for live updates, or join the waitlist</p>
 						<p className="mb-8">Be the first to know when it's launched!</p>
 
