@@ -194,11 +194,11 @@ export default function Home() {
 						viewport={{ once: true }}
 						variants={fadeInVariants}
 					>
-						<h2 className="text-3xl font-bold text-center mb-8">What's our solution?</h2>
+						<h2 className="text-3xl font-bold text-center mb-8 rounded-lg">What's our solution?</h2>
 						<p className="text-center mb-12">
 						A Seerah App for the Everyday Muslim, to help us learn (and actually remember!) the Seerah.  
 						</p>
-						<div className="flex items-center justify-center mb-16">
+						<div className="flex items-center justify-center mb-16 bg-[#f7f5f2] p-10 rounded-3xl">
 							<div>
 								<Image
 									src="/images/template/screen-trio.png"
