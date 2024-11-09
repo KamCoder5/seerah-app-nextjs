@@ -202,9 +202,9 @@ export default function Home() {
 							{[
 								{ icon: FaLanguage, text: "Simplified Language" },
 								{ icon: FaClock, text: "Short, Bite-Sized Learning:" },
-								{ icon: FaChartLine, text: "Too detailed or too simple" },
+								{ icon: FaChartLine, text: "Clear Progression" },
 								{ icon: FaCompass, text: "Structured Learning Path" },
-								{ icon: FaUser, text: "Memorisation Tools and Clear Progression" },
+								{ icon: FaUser, text: "Memorisation Tools" },
 							].map((item, index) => (
 								<div
 									key={index}
@@ -270,11 +270,13 @@ export default function Home() {
 						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
 
 						<Button
-							size="xl"
-							className="mb-8"
-						>
-							Try Demo
-						</Button>
+									asChild
+									className="mb-8"
+
+									size="xl"
+								>
+									<Link href="/chapters">Try demo</Link>
+								</Button>
 						<p className="text-xl font-semibold mb-4">Coming soon:</p>
 						<div className="flex justify-center gap-8">
 						<Button disabled={true}>
