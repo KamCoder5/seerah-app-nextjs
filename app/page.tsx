@@ -163,7 +163,7 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What problem are we trying to solve?</h2>
 						<p className="text-center mb-12">
-							The current Seerah resources, books, videos, podcasts, etc, can pose the following challenges:
+						The current Seerah resources, including books, videos, podcasts, etc., can pose the following challenges:
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
 							{[
