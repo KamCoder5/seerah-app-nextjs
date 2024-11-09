@@ -230,22 +230,23 @@ export default function Home() {
 					>
 						<div className="flex flex-col items-center gap-8">
 							<div className="flex">
-								<Avatar>
+								<Avatar className="relative z-10">
 									<AvatarImage src="/images/dp/kam-dp.jpg" />
 									<AvatarFallback>Kamilah</AvatarFallback>
 								</Avatar>
-								<Avatar className="-ml-3">
+								<Avatar className="-ml-3 z-0">
 									<AvatarImage src="/images/dp/tan-dp.jpg" />
 									<AvatarFallback>Tanveer</AvatarFallback>
 								</Avatar>
 							</div>
-							<h2 className="text-3xl font-bold mb-4">Salaam! I'm Kamilah, the founder of The Seerah App.</h2>
+							<h2 className="text-3xl font-bold mb-2">Salaam!</h2>
+							<h2 className="text-3xl font-bold mb-2"> I'm Kamilah, the founder of The Seerah App.</h2>
 
-							<p className="mb-4">
+							<p className="mb-2">
 								We're making knowledge accessible by creating a beautifully designed and structured tool that makes learning about the life of our
 								Prophet Muhammad ﷺ easy and memorable.
 							</p>
-							<p className="mb-4">
+							<p className="mb-2">
 								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah, and I want
 								you to be a part of the build with me by sharing your ideas, feedback, and suggestions along the way.
 							</p>
