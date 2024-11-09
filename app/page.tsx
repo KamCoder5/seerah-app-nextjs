@@ -2,7 +2,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button/Button";
-import FloatingButton from "@/components/ui/floating-button/FloatingButton";
 import Image from "next/image";
 import { pageVariants, pageTransition } from "@/lib/animation";
 import { motion } from "framer-motion";
@@ -51,14 +50,13 @@ export default function Home() {
 							<Button asChild>
 								<Link href="/chapters">Try demo</Link>
 							</Button>
-							<PopupButton id="jK5VfgK6">
-								<Button
-									asChild
-									variant="outline"
-								>
-									Give Feedback
-								</Button>
-							</PopupButton>
+
+							<Button
+								asChild
+								variant="outline"
+							>
+								<PopupButton id="jK5VfgK6">Give Feedback</PopupButton>
+							</Button>
 						</div>
 					</div>
 				</header>
@@ -269,19 +267,19 @@ export default function Home() {
 							</div>
 							<div className="flex gap-4">
 								<Link
-									href="#"
+									href="https://x.com/theseerahapp"
 									aria-label="Twitter"
 								>
 									<FaXTwitter className="text-2xl" />
 								</Link>
 								<Link
-									href="#"
+									href="https://instagram.com/theseerahapp"
 									aria-label="Instagram"
 								>
 									<FaInstagram className="text-2xl" />
 								</Link>
 								<Link
-									href="#"
+									href="https://uk.linkedin.com/company/theseerahapp"
 									aria-label="LinkedIn"
 								>
 									<FaLinkedin className="text-2xl" />
@@ -290,7 +288,6 @@ export default function Home() {
 						</div>
 					</div>
 				</footer>
-				<FloatingButton />
 			</div>
 		</motion.div>
 	);
