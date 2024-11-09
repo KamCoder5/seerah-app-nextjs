@@ -277,14 +277,15 @@ export default function Home() {
 						</Button>
 						<p className="text-xl font-semibold mb-4">Coming soon:</p>
 						<div className="flex justify-center gap-8">
+						<Button disabled={true}>
+								<FaApple className="text-xl mr-2" />
+								<span>iPhone</span>
+							</Button>
 							<Button disabled={true}>
 								<FaAndroid className="text-xl mr-2" />
 								<span>Android</span>
 							</Button>
-							<Button disabled={true}>
-								<FaApple className="text-xl mr-2" />
-								<span>iPhone</span>
-							</Button>
+							
 						</div>
 					</motion.div>
 				</section>
