@@ -270,15 +270,14 @@ export default function Home() {
 						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
 
 						<Button
-									asChild
-									className="mb-8"
-
-									size="xl"
-								>
-									<Link href="/chapters">Try demo</Link>
-								</Button>
+							asChild
+							className="mb-8"
+							size="xl"
+						>
+							<Link href="/chapters">Try demo</Link>
+						</Button>
 						<p className="text-xl font-semibold mb-4">Coming soon:</p>
-						<div className="flex justify-center gap-8">
+						<div className="flex justify-center gap-8 mb-8">
 						<Button disabled={true}>
 								<FaApple className="text-xl mr-2" />
 								<span>iPhone</span>
@@ -289,6 +288,23 @@ export default function Home() {
 							</Button>
 							
 						</div>
+						<p className="mb-2">Follow me on X for live updates, or join the waitlist</p>
+						<p className="mb-8">Be the first to know when it's launched!</p>
+
+						<div className="flex justify-center items-center gap-8 mb-8">
+							<Button asChild size="xl" className="flex items-center mb-8 bg-black text-white"
+							    style={{ backgroundColor: "black", color: "white" }}>
+								<Link href="https://x.com/KamCoder5" aria-label="Twitter">
+								<FaXTwitter className="text-1xl" />
+								</Link>
+
+							</Button>
+							<Button asChild size="xl" className="mb-8">
+								<Link href="/chapters">Join Waitlist</Link>
+							</Button>
+						</div>
+
+						
 					</motion.div>
 				</section>
 
