@@ -11,6 +11,7 @@ import ChapterHeader from "@/components/chapters/ChapterHeader";
 import ChapterList from "@/components/chapters/ChapterList";
 import ContinueReadingButton from "@/components/ui/button/ContinueReadingButton";
 import { LoadingSpinner } from "@/components/ui/spinner/Spinner";
+import { ScrollArea } from "@/components/ui/scroll-area/ScrollArea";
 
 const ChaptersRoot: React.FC = () => {
 	const { data, isLoading, error } = useFetchAllChapters();
@@ -43,11 +44,13 @@ const ChaptersRoot: React.FC = () => {
 			<main className="relative min-h-dvh flex flex-col justify-between">
 				<div className="flex flex-col items-center flex-grow pt-3 md:pt-6">
 					<ChapterHeader />
-					<ChapterList
-						chapters={data || []}
-						unlockedChapters={unlockedChapters}
-						onChapterClick={handleChapterClick}
-					/>
+					<ScrollArea className="h-[calc(100dvh-210px)] w-full">
+						<ChapterList
+							chapters={data || []}
+							unlockedChapters={unlockedChapters}
+							onChapterClick={handleChapterClick}
+						/>
+					</ScrollArea>
 				</div>
 				<div className="absolute bottom-0 left-0 w-full py-3 bg-brown-50 shadow-xl z-50 max-w-3xl m-auto ">
 					<ContinueReadingButton
