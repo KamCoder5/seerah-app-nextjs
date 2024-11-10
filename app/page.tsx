@@ -19,7 +19,7 @@ import {
 	FaAndroid,
 	FaApple,
 } from "react-icons/fa";
-import { FaXTwitter, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import { FaXTwitter} from "react-icons/fa6";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar/Avatar";
 import { PopupButton } from "@typeform/embed-react";
 
