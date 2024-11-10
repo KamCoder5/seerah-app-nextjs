@@ -65,7 +65,7 @@ export default function Home() {
 						</Link>
 						<div className="flex space-x-3">
 							<Button asChild>
-								<Link href="/chapters">Try demo</Link>
+								<Link href="/chapters">Join Waitlist</Link>
 							</Button>
 
 							<Button
@@ -130,8 +130,7 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What is The Seerah App?</h2>
 						<p className="text-center mb-12 max-w-2xl mx-auto">
-							An App that helps us learn and remember the life of Prophet Muhammad ﷺ through simplified, structured,
-							bite-sized, and engaging chapters - knowledge we can use in our everyday lives.
+						An app that helps us learn and remember the life of Prophet Muhammad ﷺ through simple, bite-sized, and engaging chapters — knowledge you can apply in your everyday lives.
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
 							{[
@@ -164,15 +163,58 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What problem are we trying to solve?</h2>
 						<p className="text-center mb-12">
-							The current resources, books, videos, podcasts, etc, can pose the following challenges:
+						The current Seerah resources, including books, videos, podcasts, etc., can pose the following challenges:
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
 							{[
-								{ icon: FaLanguage, text: "Complex language" },
-								{ icon: FaClock, text: "Time" },
-								{ icon: FaChartLine, text: "Varying depths" },
+								{ icon: FaLanguage, text: "Language too complex " },
+								{ icon: FaClock, text: "Too time-consuming" },
+								{ icon: FaChartLine, text: "Too detailed or too simple" },
 								{ icon: FaCompass, text: "Unclear starting point" },
-								{ icon: FaUser, text: "Self-orientation" },
+								{ icon: FaUser, text: "Unclear how to progress" },
+							].map((item, index) => (
+								<div
+									key={index}
+									className="flex flex-col items-center"
+								>
+									<div className="w-16 h-16 flex items-center justify-center bg-brown-500 rounded-full mb-4">
+										<item.icon className="text-4xl text-white" />
+									</div>
+									<p className="text-lg font-semibold text-center font-sans">{item.text}</p>
+								</div>
+							))}
+						</div>
+					</motion.div>
+				</section>
+				<section className="bg-brown-50 py-16 md:py-32">
+					<motion.div
+						className="container mx-auto px-4"
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						variants={fadeInVariants}
+					>
+						<h2 className="text-3xl font-bold text-center mb-8 rounded-lg">What's our solution?</h2>
+						<p className="text-center mb-12">
+						A Seerah App for the Everyday Muslim, to help us learn (and actually remember!) the Seerah.  
+						</p>
+						<div className="flex items-center justify-center mb-16 bg-[#f7f5f2] p-10 rounded-3xl">
+							<div>
+								<Image
+									src="/images/template/screen-trio.png"
+									alt="Seerah App"
+									width={800}
+									height={800}
+								/>
+							</div>
+						</div>
+						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+							{[
+								{ icon: FaLanguage, text: "Simplified Language" },
+								{ icon: FaClock, text: "Short, Bite-Sized Learning:" },
+								{ icon: FaChartLine, text: "Clear Progression" },
+								{ icon: FaCompass, text: "Structured Learning Path" },
+								{ icon: FaUser, text: "Memorisation Tools" },
 							].map((item, index) => (
 								<div
 									key={index}
@@ -188,7 +230,7 @@ export default function Home() {
 					</motion.div>
 				</section>
 
-				<section className="bg-brown-50 py-16 md:py-32">
+				<section className="bg-white py-16 md:py-32">
 					<motion.div
 						className="container mx-auto px-4 max-w-2xl"
 						initial="hidden"
@@ -198,25 +240,25 @@ export default function Home() {
 					>
 						<div className="flex flex-col items-center gap-8">
 							<div className="flex">
-								<Avatar>
+								<Avatar className="relative z-10">
 									<AvatarImage src="/images/dp/kam-dp.jpg" />
 									<AvatarFallback>Kamilah</AvatarFallback>
 								</Avatar>
-								<Avatar className="-ml-3">
+								<Avatar className="-ml-3 z-0">
 									<AvatarImage src="/images/dp/tan-dp.jpg" />
 									<AvatarFallback>Tanveer</AvatarFallback>
 								</Avatar>
 							</div>
-							<h2 className="text-3xl font-bold mb-4">Salaam! I'm Kamilah, the founder of The Seerah App 😊</h2>
-							<p className="mb-4">
-								We're creating a beautifully designed and structured tool that makes learning about the life of our
-								Prophet ﷺ memorable and accessible. Existing resources can feel overwhelming or time-consuming
-								sometimes, so we're making knowledge accessible - building The Seerah App for everyday Muslims who want
-								to strengthen their connection to the Prophet ﷺ.
+							<h2 className="text-3xl font-bold mb-2">Salaam!</h2>
+							<h2 className="text-3xl font-bold mb-2"> I'm Kamilah, the founder of The Seerah App.</h2>
+
+							<p className="mb-2">
+								We're making knowledge accessible by creating a beautifully designed and structured tool that makes learning about the life of our
+								Prophet Muhammad ﷺ easy and memorable.
 							</p>
-							<p className="mb-4">
-								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah, and I want
-								you to be a part of the build with me—by sharing your ideas, feedback, and suggestions along the way.
+							<p className="mb-2">
+								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah. So, get involved! I want
+								you to be a part of the build with me by sharing your ideas, feedback, and suggestions along the way.
 							</p>
 							<p>
 								So let's earn some passive-sadaqah and spread the word. If you have ideas or feedback, we'd love to hear
@@ -226,7 +268,7 @@ export default function Home() {
 					</motion.div>
 				</section>
 
-				<section className="bg-white py-16 md:py-32">
+				<section className="bg-brown-50 py-16 md:py-32">
 					<motion.div
 						className="container mx-auto px-4 text-center"
 						initial="hidden"
@@ -234,29 +276,51 @@ export default function Home() {
 						viewport={{ once: true }}
 						variants={fadeInVariants}
 					>
-						<h2 className="text-3xl font-bold mb-8">Where can I get it?</h2>
-						<p className="mb-8">You can try out the demo now</p>
+						<h2 className="text-3xl font-bold mb-8">Where can I get The Seerah App?</h2>
+						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
+
 						<Button
-							size="xl"
+							asChild
 							className="mb-8"
+							size="xl"
 						>
-							Try Demo
+							<Link href="/chapters">Try demo</Link>
 						</Button>
 						<p className="text-xl font-semibold mb-4">Coming soon:</p>
-						<div className="flex justify-center gap-8">
+						<div className="flex justify-center gap-8 mb-16">
+						<Button disabled={true}>
+								<FaApple className="text-xl mr-2" />
+								<span>iPhone</span>
+							</Button>
 							<Button disabled={true}>
 								<FaAndroid className="text-xl mr-2" />
 								<span>Android</span>
 							</Button>
-							<Button disabled={true}>
-								<FaApple className="text-xl mr-2" />
-								<span>iPhone</span>
+							
+						</div>
+						<h2 className="text-3xl font-bold mb-8">Stay Updated</h2>
+
+						<p className="mb-2">Follow me on X for live updates, or join the waitlist</p>
+						<p className="mb-8">Be the first to know when it's launched!</p>
+
+						<div className="flex justify-center items-center gap-8 mb-8">
+							<Button asChild size="xl" className="flex items-center mb-8 bg-black text-white"
+							    style={{ backgroundColor: "black", color: "white" }}>
+								<Link href="https://x.com/KamCoder5" aria-label="Twitter">
+								<FaXTwitter className="text-1xl" />
+								</Link>
+
+							</Button>
+							<Button asChild size="xl" className="mb-8">
+								<Link href="/chapters">Join Waitlist</Link>
 							</Button>
 						</div>
+
+						
 					</motion.div>
 				</section>
 
-				<footer className="bg-brown-50 text-black py-8">
+				<footer className="bg-white text-black py-8">
 					<div className="container mx-auto px-4">
 						<div className="flex flex-col md:flex-row justify-between items-center">
 							<div className="mb-4 md:mb-0">
@@ -272,6 +336,17 @@ export default function Home() {
 									. All rights reserved.
 								</p>
 								<p>
+									Contact us at {" "}
+									<a
+										href="mailto:hi@seerahapp.com"
+										target="_blank"
+										rel="noopener noreferrer"
+										className="underline text-brown-600"
+									>
+										hi@seerahapp.com
+									</a>
+								</p>
+								<p>
 									Developed by{" "}
 									<a
 										href="https://sunnahapps.com"
@@ -285,12 +360,12 @@ export default function Home() {
 							</div>
 							<div className="flex gap-4">
 								<Link
-									href="https://x.com/theseerahapp"
+									href="https://x.com/KamCoder5"
 									aria-label="Twitter"
 								>
 									<FaXTwitter className="text-2xl" />
 								</Link>
-								<Link
+								{/* <Link
 									href="https://instagram.com/theseerahapp"
 									aria-label="Instagram"
 								>
@@ -301,7 +376,7 @@ export default function Home() {
 									aria-label="LinkedIn"
 								>
 									<FaLinkedin className="text-2xl" />
-								</Link>
+								</Link> */}
 							</div>
 						</div>
 					</div>
