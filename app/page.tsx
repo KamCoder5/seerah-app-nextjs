@@ -19,7 +19,7 @@ import {
 	FaAndroid,
 	FaApple,
 } from "react-icons/fa";
-import { FaXTwitter} from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar/Avatar";
 import { PopupButton } from "@typeform/embed-react";
 
@@ -130,7 +130,8 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What is The Seerah App?</h2>
 						<p className="text-center mb-12 max-w-2xl mx-auto">
-						An app that helps us learn and remember the life of Prophet Muhammad ﷺ through simple, bite-sized, and engaging chapters — knowledge you can apply in your everyday lives.
+							An app that helps us learn and remember the life of Prophet Muhammad ﷺ through simple, bite-sized, and
+							engaging chapters — knowledge you can apply in your everyday lives.
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
 							{[
@@ -163,7 +164,7 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What problem are we trying to solve?</h2>
 						<p className="text-center mb-12">
-						The current Seerah resources, including books, videos, podcasts, etc., can pose the following challenges:
+							The current Seerah resources, including books, videos, podcasts, etc., can pose the following challenges:
 						</p>
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
 							{[
@@ -196,9 +197,9 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8 rounded-lg">What's our solution?</h2>
 						<p className="text-center mb-12">
-						A Seerah App for the Everyday Muslim, to help us learn (and actually remember!) the Seerah.  
+							A Seerah App for the Everyday Muslim, to help us learn (and actually remember!) the Seerah.
 						</p>
-						<div className="flex items-center justify-center mb-16 bg-[#f7f5f2] p-10 rounded-3xl">
+						<div className="flex items-center justify-center mb-16 p-10 rounded-3xl">
 							<div>
 								<Image
 									src="/images/template/screen-trio.png"
@@ -253,12 +254,13 @@ export default function Home() {
 							<h2 className="text-3xl font-bold mb-2"> I'm Kamilah, the founder of The Seerah App.</h2>
 
 							<p className="mb-2">
-								We're making knowledge accessible by creating a beautifully designed and structured tool that makes learning about the life of our
-								Prophet Muhammad ﷺ easy and memorable.
+								We're making knowledge accessible by creating a beautifully designed and structured tool that makes
+								learning about the life of our Prophet Muhammad ﷺ easy and memorable.
 							</p>
 							<p className="mb-2">
-								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah. So, get involved! I want
-								you to be a part of the build with me by sharing your ideas, feedback, and suggestions along the way.
+								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah. So, get
+								involved! I want you to be a part of the build with me by sharing your ideas, feedback, and suggestions
+								along the way.
 							</p>
 							<p>
 								So let's earn some passive-sadaqah and spread the word. If you have ideas or feedback, we'd love to hear
@@ -288,7 +290,7 @@ export default function Home() {
 						</Button>
 						<p className="text-xl font-semibold mb-4">Coming soon:</p>
 						<div className="flex justify-center gap-8 mb-16">
-						<Button disabled={true}>
+							<Button disabled={true}>
 								<FaApple className="text-xl mr-2" />
 								<span>iPhone</span>
 							</Button>
@@ -296,31 +298,48 @@ export default function Home() {
 								<FaAndroid className="text-xl mr-2" />
 								<span>Android</span>
 							</Button>
-							
 						</div>
+					</motion.div>
+				</section>
+				<section className="bg-white py-16 md:py-32">
+					<motion.div
+						className="container mx-auto px-4 text-center"
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						variants={fadeInVariants}
+					>
 						<h2 className="text-3xl font-bold mb-8">Stay Updated</h2>
 
 						<p className="mb-2">Follow me on X for live updates, or join the waitlist</p>
 						<p className="mb-8">Be the first to know when it's launched!</p>
 
 						<div className="flex justify-center items-center gap-8 mb-8">
-							<Button asChild size="xl" className="flex items-center mb-8 bg-black text-white"
-							    style={{ backgroundColor: "black", color: "white" }}>
-								<Link href="https://x.com/KamCoder5" aria-label="Twitter">
-								<FaXTwitter className="text-1xl" />
+							<Button
+								asChild
+								size="xl"
+								className="flex items-center mb-8 bg-black"
+								style={{ backgroundColor: "black", color: "white" }}
+							>
+								<Link
+									href="https://x.com/KamCoder5"
+									aria-label="Twitter"
+								>
+									<FaXTwitter className="text-1xl" />
 								</Link>
-
 							</Button>
-							<Button asChild size="xl" className="mb-8">
+							<Button
+								asChild
+								size="xl"
+								className="mb-8"
+							>
 								<Link href="/chapters">Join Waitlist</Link>
 							</Button>
 						</div>
-
-						
 					</motion.div>
 				</section>
 
-				<footer className="bg-white text-black py-8">
+				<footer className="bg-brown-50 text-black py-8">
 					<div className="container mx-auto px-4">
 						<div className="flex flex-col md:flex-row justify-between items-center">
 							<div className="mb-4 md:mb-0">
@@ -336,7 +355,7 @@ export default function Home() {
 									. All rights reserved.
 								</p>
 								<p>
-									Contact us at {" "}
+									Contact us at&nbsp;
 									<a
 										href="mailto:hi@seerahapp.com"
 										target="_blank"
