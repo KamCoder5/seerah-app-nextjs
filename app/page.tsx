@@ -130,9 +130,17 @@ export default function Home() {
 					>
 						<h2 className="text-3xl font-bold text-center mb-8">What is The Seerah App?</h2>
 						<p className="text-center mb-12 max-w-2xl mx-auto">
-							An app that helps us learn and remember the life of Prophet Muhammad ﷺ through simple, bite-sized, and
-							engaging chapters — knowledge you can apply in your everyday lives.
+							An app that helps us learn and remember the life of Prophet Muhammad ﷺ through simple, structured, bite-sized, and
+							engaging chapters — guided knowledge you can apply in your everyday lives.
 						</p>
+						<div className="flex items-center justify-center mb-16 p-10 rounded-3xl">
+								<Image
+									src="/images/template/screen-trio.png"
+									alt="Seerah App"
+									width={800}
+									height={800}
+								/>
+						</div>
 						<div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
 							{[
 								{ icon: FaBook, text: "Read" },
@@ -199,20 +207,11 @@ export default function Home() {
 						<p className="text-center mb-12">
 							A Seerah App for the Everyday Muslim, to help us learn (and actually remember!) the Seerah.
 						</p>
-						<div className="flex items-center justify-center mb-16 p-10 rounded-3xl">
-							<div>
-								<Image
-									src="/images/template/screen-trio.png"
-									alt="Seerah App"
-									width={800}
-									height={800}
-								/>
-							</div>
-						</div>
+					
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
 							{[
 								{ icon: FaLanguage, text: "Simplified Language" },
-								{ icon: FaClock, text: "Short, Bite-Sized Learning:" },
+								{ icon: FaClock, text: "Short, Bite-Sized " },
 								{ icon: FaChartLine, text: "Clear Progression" },
 								{ icon: FaCompass, text: "Structured Learning Path" },
 								{ icon: FaUser, text: "Memorisation Tools" },
@@ -269,39 +268,7 @@ export default function Home() {
 						</div>
 					</motion.div>
 				</section>
-
 				<section className="bg-brown-50 py-16 md:py-32">
-					<motion.div
-						className="container mx-auto px-4 text-center"
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true }}
-						variants={fadeInVariants}
-					>
-						<h2 className="text-3xl font-bold mb-8">Where can I get The Seerah App?</h2>
-						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
-
-						<Button
-							asChild
-							className="mb-8"
-							size="xl"
-						>
-							<Link href="/chapters">Try demo</Link>
-						</Button>
-						<p className="text-xl font-semibold mb-4">Coming soon:</p>
-						<div className="flex justify-center gap-8 mb-16">
-							<Button disabled={true}>
-								<FaApple className="text-xl mr-2" />
-								<span>iPhone</span>
-							</Button>
-							<Button disabled={true}>
-								<FaAndroid className="text-xl mr-2" />
-								<span>Android</span>
-							</Button>
-						</div>
-					</motion.div>
-				</section>
-				<section className="bg-white py-16 md:py-32">
 					<motion.div
 						className="container mx-auto px-4 text-center"
 						initial="hidden"
@@ -338,6 +305,39 @@ export default function Home() {
 						</div>
 					</motion.div>
 				</section>
+
+				<section className="bg-white py-16 md:py-32">
+					<motion.div
+						className="container mx-auto px-4 text-center"
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						variants={fadeInVariants}
+					>
+						<h2 className="text-3xl font-bold mb-8">Where can I get The Seerah App?</h2>
+						<p className="mb-8">You can try out the demo now and let us know what you think!</p>
+
+						<Button
+							asChild
+							className="mb-8"
+							size="xl"
+						>
+							<Link href="/chapters">Try demo</Link>
+						</Button>
+						<p className="text-xl font-semibold mb-4">Coming soon:</p>
+						<div className="flex justify-center gap-8 mb-16">
+							<Button disabled={true}>
+								<FaApple className="text-xl mr-2" />
+								<span>iPhone</span>
+							</Button>
+							<Button disabled={true}>
+								<FaAndroid className="text-xl mr-2" />
+								<span>Android</span>
+							</Button>
+						</div>
+					</motion.div>
+				</section>
+		
 
 				<footer className="bg-brown-50 text-black py-8">
 					<div className="container mx-auto px-4">
