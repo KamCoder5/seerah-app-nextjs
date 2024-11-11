@@ -29,12 +29,22 @@ const replaceImages = (htmlContent: string) => {
 	const options = {
 		replace: (domNode: DOMNode) => {
 			if (domNode instanceof Element && domNode.name === "img" && domNode.attribs.src) {
+				let imageWidth = Number(domNode.attribs.width);
+				let imageHeight = Number(domNode.attribs.height);
+				const aspectRatio = imageWidth / imageHeight;
+
+				if (imageWidth > 768) {
+					imageWidth = 768;
+				}
+				imageHeight = imageWidth / aspectRatio;
+
 				return (
 					<Image
 						src={domNode.attribs.src}
 						alt={domNode.attribs.alt || ""}
-						width={Number(domNode.attribs.width) || 500}
-						height={Number(domNode.attribs.height) || 500}
+						width={imageWidth}
+						height={imageHeight}
+						quality={50}
 					/>
 				);
 			}
