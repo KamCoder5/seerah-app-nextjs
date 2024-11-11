@@ -3,6 +3,8 @@ import QuizContainer from "../quiz/QuizContainer";
 import QuizOptions from "../quiz/QuizOptions";
 import QuizQuestion from "../quiz/QuizQuestion";
 import QuizScore from "../quiz/QuizScore";
+import Image from "next/image";
+import parse from "html-react-parser";
 
 interface ContentSectionProps {
 	contentHtml: string;
@@ -20,6 +22,37 @@ interface ContentSectionProps {
 	isAnswered: boolean;
 	isLastQuestion: boolean;
 }
+
+import { DOMNode, Element } from "html-react-parser";
+
+const replaceImages = (htmlContent: string) => {
+	const options = {
+		replace: (domNode: DOMNode) => {
+			if (domNode instanceof Element && domNode.name === "img" && domNode.attribs.src) {
+				let imageWidth = Number(domNode.attribs.width);
+				let imageHeight = Number(domNode.attribs.height);
+				const aspectRatio = imageWidth / imageHeight;
+
+				if (imageWidth > 768) {
+					imageWidth = 768;
+				}
+				imageHeight = imageWidth / aspectRatio;
+
+				return (
+					<Image
+						src={domNode.attribs.src}
+						alt={domNode.attribs.alt || ""}
+						width={imageWidth}
+						height={imageHeight}
+						quality={50}
+					/>
+				);
+			}
+		},
+	};
+
+	return parse(htmlContent, options);
+};
 
 const ContentSection: React.FC<ContentSectionProps> = ({
 	contentHtml,
@@ -39,10 +72,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
 }) => {
 	return (
 		<div>
-			<div
-				dangerouslySetInnerHTML={{ __html: contentHtml }}
-				className="wp-content"
-			/>
+			<div className="wp-content">{replaceImages(contentHtml)}</div>
 
 			{isQuiz && (
 				<QuizContainer>
