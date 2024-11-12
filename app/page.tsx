@@ -65,7 +65,7 @@ export default function Home() {
 						</Link>
 						<div className="flex space-x-3">
 							<Button asChild>
-								<Link href="/chapters">Join Waitlist</Link>
+								<Link href="https://tally.so/r/mOjaLA">Join Waitlist</Link>
 							</Button>
 
 							<Button
@@ -211,9 +211,9 @@ export default function Home() {
 						<div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
 							{[
 								{ icon: FaLanguage, text: "Simplified Language" },
-								{ icon: FaClock, text: "Short, Bite-Sized " },
+								{ icon: FaClock, text: "Short, Bite-Sized" },
 								{ icon: FaChartLine, text: "Clear Progression" },
-								{ icon: FaCompass, text: "Structured Learning Path" },
+								{ icon: FaCompass, text: "Structured, Guided Learning Path" },
 								{ icon: FaUser, text: "Memorisation Tools" },
 							].map((item, index) => (
 								<div
@@ -249,22 +249,20 @@ export default function Home() {
 									<AvatarFallback>Tanveer</AvatarFallback>
 								</Avatar>
 							</div>
-							<h2 className="text-3xl font-bold mb-2">Salaam!</h2>
-							<h2 className="text-3xl font-bold mb-2"> I'm Kamilah, the founder of The Seerah App.</h2>
-
+							<h2 className="text-3xl font-bold mb-2">Hey Salaam 👋</h2>
 							<p className="mb-2">
-								We're making knowledge accessible by creating a beautifully designed and structured tool that makes
-								learning about the life of our Prophet Muhammad ﷺ easy and memorable.
+							I'm Kamilah, the founder of The Seerah App ✨ 
 							</p>
 							<p className="mb-2">
-								In this journey, you are my co-founders. My aim is to build this for the Ummah, as an Ummah. So, get
-								involved! I want you to be a part of the build with me by sharing your ideas, feedback, and suggestions
-								along the way.
+							We're on a mission to make learning about the life of Prophet Muhammad ﷺ both easy and memorable through a beautifully designed, user-friendly tool.
 							</p>
-							<p>
-								So let's earn some passive-sadaqah and spread the word. If you have ideas or feedback, we'd love to hear
-								from you!
+							<p className="mb-2">
+							But I'm not building this alone – I want you to be part of the journey with me! Think of yourselves as apart of The Seerah App team, shaping this project for the Ummah, by the Ummah. 🤝 Your ideas and feedback mean the world to us, and together, we can create something truly impactful.
 							</p>
+							<p className="mb-2">
+							Let's build something meaningful and earn ongoing rewards, insha'Allah. Have thoughts, suggestions or want to get involved? Please reach out – I'd love to hear from you!
+							</p>
+					
 						</div>
 					</motion.div>
 				</section>
@@ -300,7 +298,7 @@ export default function Home() {
 								size="xl"
 								className="mb-8"
 							>
-								<Link href="/chapters">Join Waitlist</Link>
+								<Link href="https://tally.so/r/mOjaLA">Join Waitlist</Link>
 							</Button>
 						</div>
 					</motion.div>
