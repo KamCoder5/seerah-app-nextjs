@@ -56,7 +56,7 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({
 	const isNewChapterBadge = (showBadge: boolean) => {
 		if (showBadge) {
 			return (
-				<div className="absolute top-1 left-1 z-10">
+				<div className="absolute top-1 left-4 z-10">
 					<Badge variant="secondary">new</Badge>
 				</div>
 			);
@@ -83,7 +83,7 @@ const SingleChapterButton: React.FC<StyledButtonProps> = ({
 			)}
 			onClick={effectiveDisabled ? undefined : onClick}
 			disabled={effectiveDisabled}
-			whileHover={{ scale: effectiveDisabled ? 1 : 1.05 }}
+			whileHover={{ scale: effectiveDisabled ? 1 : 0.975 }}
 			whileTap={{ scale: effectiveDisabled ? 1 : 0.95 }}
 		>
 			{isComingSoonBadge(isComingSoon)}
