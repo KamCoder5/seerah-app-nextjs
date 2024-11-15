@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--background: #f1ede8;
+	--primary-text: black;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #f1ede8;
+	}
+}
+
+body {
+	color: var(--primary-text);
+	background: var(--background);
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply text-brown-500;
+}
+
+/* Custom styles for WordPress blocks */
+.wp-block-quote {
+	@apply border-l-4 border-gray-300 pl-4 text-gray-700;
+}
+
+.wp-block-quote .quote-text {
+	@apply italic text-lg;
+}
+
+.wp-block-quote .quote-source {
+	@apply text-sm text-gray-500;
+}
+
+.wp-block-image img {
+	@apply max-w-full h-auto rounded-lg shadow-md;
+}
+
+.content-text {
+	@apply mb-4 leading-relaxed;
+}
+
+.quiz-block {
+	@apply hidden invisible;
+}
+
+.next-page-divider {
+	@apply my-8 border-t border-gray-200;
+}
+
+.title {
+	@apply text-3xl font-bold mb-4;
+}
+
+.subtitle {
+	@apply text-xl font-semibold mb-2;
+}
+
+.image-caption {
+	@apply text-sm text-gray-500 mt-2;
+}
+
+.wp-content p:not(blockquote p) {
+	@apply mb-3;
+}
+
+.wp-content .wp-block-quote,
+.wp-content .wp-block-image,
+.wp-content .wp-block-cover {
+	@apply mb-3 md:mb-6;
+}
+
+.has-large-font-size {
+	@apply text-3xl md:text-5xl;
+}
+
+.has-medium-font-size {
+	@apply text-lg;
+}
+
+.has-text-align-center {
+	@apply text-center;
+}
+
+.has-text-align-right {
+	@apply text-right;
+}
+
+.has-small-font-size {
+	@apply text-sm;
+}
+
+.wp-block-button .wp-block-button__width-100 {
+	@apply w-full;
+}
+
+.chapter-complete-heading {
+	@apply text-brown-500;
+}
